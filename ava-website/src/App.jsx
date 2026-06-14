@@ -389,7 +389,7 @@ export default function App() {
         <div className="ava-container">
           <p className="ava-trusted__label">Vertraut von Hotels und Servicebetrieben</p>
           <div className="ava-trusted__logos">
-            {["Grand Vienna", "Baba Ambiente", "EstateFlow", "MediCare Pro", "LegalEdge", "NexGen Clinics"].map(n => (
+            {["Grand Vienna", "EstateFlow", "MediCare Pro", "LegalEdge", "NexGen Clinics"].map(n => (
               <span key={n} className="ava-trusted__logo">{n}</span>
             ))}
           </div>
