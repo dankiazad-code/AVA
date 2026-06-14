@@ -1208,6 +1208,15 @@ input, textarea, select { font: inherit; }
   padding: 2.5rem;
   box-shadow: 0 0 60px rgba(0,0,0,0.3);
 }
+.ava-contact__calendly {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,0.3);
+  /* Calendly widget dark mode override */
+  --calendly-bg: var(--surface-2);
+}
 .ava-contact__form { display: flex; flex-direction: column; gap: 1.25rem; }
 .ava-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .ava-form__group { display: flex; flex-direction: column; gap: 0.4rem; }

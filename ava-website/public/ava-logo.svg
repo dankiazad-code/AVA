@@ -1,0 +1,12 @@
+<svg viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- AVA wordmark: connected mountain peaks A-V-A with serif feet -->
+  <!-- Main zigzag path -->
+  <path d="M18 76 L88 8 L158 76 L228 8 L298 76"
+    stroke="white" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="20"/>
+  <!-- Left serif foot -->
+  <line x1="3" y1="76" x2="33" y2="76" stroke="white" stroke-width="11" stroke-linecap="butt"/>
+  <!-- Middle serif foot (V bottom) -->
+  <line x1="143" y1="76" x2="173" y2="76" stroke="white" stroke-width="11" stroke-linecap="butt"/>
+  <!-- Right serif foot -->
+  <line x1="283" y1="76" x2="313" y2="76" stroke="white" stroke-width="11" stroke-linecap="butt"/>
+</svg>

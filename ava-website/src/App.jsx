@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 /* ── Scroll reveal ── */
@@ -58,19 +58,15 @@ function ParticleCanvas() {
 }
 
 /* ── AVA Wordmark Logo ── */
-function AVALogo({ size = 36 }) {
-  const h = size;
-  const w = size * 1.6;
+function AVALogo({ height = 28 }) {
+  const w = height * (320 / 90);
   return (
-    <svg width={w} height={h} viewBox="0 0 58 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Left A */}
-      <path d="M2 32L11 4H16L19 32H14.5L13.5 25H8.5L6.5 32H2Z" fill="white"/>
-      <path d="M9.5 21H13L11.5 9L9.5 21Z" fill="#0078FF"/>
-      {/* V */}
-      <path d="M20 4H25L29 24L33 4H38L32 32H26L20 4Z" fill="white"/>
-      {/* Right A */}
-      <path d="M39 4H44L47 32H42.5L41.5 25H36.5L34.5 32H30L39 4Z" fill="white"/>
-      <path d="M37.5 21H41L39.5 9L37.5 21Z" fill="#0078FF"/>
+    <svg width={w} height={height} viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 76 L88 8 L158 76 L228 8 L298 76"
+        stroke="white" strokeWidth="11" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="20"/>
+      <line x1="3" y1="76" x2="33" y2="76" stroke="white" strokeWidth="11" strokeLinecap="butt"/>
+      <line x1="143" y1="76" x2="173" y2="76" stroke="white" strokeWidth="11" strokeLinecap="butt"/>
+      <line x1="283" y1="76" x2="313" y2="76" stroke="white" strokeWidth="11" strokeLinecap="butt"/>
     </svg>
   );
 }
@@ -231,42 +227,14 @@ function FAQ() {
   );
 }
 
-/* ── Contact form ── */
-function ContactForm() {
-  const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
-  if (sent) return (
-    <div className="ava-contact__success">
-      <div className="ava-contact__success-icon">✓</div>
-      <h3>Nachricht erhalten</h3>
-      <p>Wir melden uns innerhalb von 24 Stunden für Ihren Strategiegespräch-Termin.</p>
-    </div>
-  );
+/* ── Calendly Embed ── */
+function CalendlyEmbed() {
   return (
-    <form className="ava-contact__form" onSubmit={e => { e.preventDefault(); setSent(true); }}>
-      <div className="ava-form__row">
-        <div className="ava-form__group">
-          <label>Vollständiger Name</label>
-          <input required placeholder="Max Mustermann" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-        </div>
-        <div className="ava-form__group">
-          <label>Unternehmen / Hotel</label>
-          <input required placeholder="Grand Vienna Hotel" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} />
-        </div>
-      </div>
-      <div className="ava-form__group">
-        <label>Geschäftliche E-Mail</label>
-        <input required type="email" placeholder="max@grandvienna.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-      </div>
-      <div className="ava-form__group">
-        <label>Wie können wir helfen?</label>
-        <textarea required rows={4} placeholder="Erzählen Sie uns von Ihrem Unternehmen und Ihren Zielen..." value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-      </div>
-      <button type="submit" className="ava-btn ava-btn--primary ava-btn--lg" style={{ justifyContent: "center" }}>
-        Nachricht senden →
-      </button>
-      <p className="ava-form__note">Kein Spam. Antwort innerhalb von 24 Stunden.</p>
-    </form>
+    <div
+      className="calendly-inline-widget"
+      data-url="https://calendly.com/dankiazad/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0E0E1A&text_color=F2F2F8&primary_color=0078FF"
+      style={{ minWidth: "280px", height: "660px" }}
+    />
   );
 }
 
@@ -736,13 +704,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
-                className="ava-btn ava-btn--primary ava-btn--lg" style={{ marginTop: "2rem", display: "inline-flex" }}>
-                Termin buchen →
-              </a>
+              <p style={{ marginTop: "1.5rem", fontSize: "0.85rem", color: "var(--gray-2)" }}>
+                ↗ Wählen Sie rechts direkt Ihren Wunschtermin aus.
+              </p>
             </div>
-            <div className="ava-contact__form-wrap">
-              <ContactForm />
+            <div className="ava-contact__calendly">
+              <CalendlyEmbed />
             </div>
           </div>
         </div>
