@@ -58,8 +58,16 @@ function ParticleCanvas() {
 }
 
 /* ── AVA Wordmark Logo ── */
-function AVALogo({ height = 28 }) {
-  return <img src="/ava-icon.png" alt="AVA" height={height} style={{ display: 'block' }} />;
+function AVALogo({ height = 40 }) {
+  const w = height * (312 / 72);
+  return (
+    <svg width={w} height={height} viewBox="0 0 312 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 64 L78 6 L156 64 L234 6 L296 64"
+        stroke="white" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="2"   y1="64" x2="16"  y2="64" stroke="white" strokeWidth="14" strokeLinecap="round"/>
+      <line x1="296" y1="64" x2="310" y2="64" stroke="white" strokeWidth="14" strokeLinecap="round"/>
+    </svg>
+  );
 }
 
 /* ── Live call demo ── */
