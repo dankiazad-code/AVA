@@ -17,6 +17,59 @@ function useReveal() {
   return ref;
 }
 
+/* ── Count-up animation ── */
+function useCountUp(target, duration = 1800) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const startedRef = useRef(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !startedRef.current) {
+        startedRef.current = true;
+        const start = Date.now();
+        const tick = () => {
+          const p = Math.min((Date.now() - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          setCount(Math.round(ease * target));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        obs.disconnect();
+      }
+    }, { threshold: 0.4 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target, duration]);
+  return [count, ref];
+}
+
+/* ── Typewriter ── */
+function Typewriter({ words }) {
+  const [idx, setIdx] = useState(0);
+  const [text, setText] = useState('');
+  const [del, setDel] = useState(false);
+  const mountedRef = useRef(true);
+  const t = useRef(null);
+  useEffect(() => { mountedRef.current = true; return () => { mountedRef.current = false; clearTimeout(t.current); }; }, []);
+  useEffect(() => {
+    const word = words[idx];
+    if (!del) {
+      if (text.length < word.length) {
+        t.current = setTimeout(() => { if (mountedRef.current) setText(word.slice(0, text.length + 1)); }, 75);
+      } else {
+        t.current = setTimeout(() => { if (mountedRef.current) setDel(true); }, 2200);
+      }
+    } else {
+      if (text.length > 0) {
+        t.current = setTimeout(() => { if (mountedRef.current) setText(text.slice(0, -1)); }, 38);
+      } else { setDel(false); setIdx((idx + 1) % words.length); }
+    }
+  }, [text, del, idx, words]);
+  return <span className="ava-typewriter">{text}<span className="ava-typewriter__cursor">|</span></span>;
+}
+
 /* ── Particle canvas ── */
 function ParticleCanvas() {
   const canvasRef = useRef(null);
@@ -252,6 +305,32 @@ function CalendlyEmbed() {
   );
 }
 
+/* ── Animated stat card ── */
+function StatCard({ target, prefix, suffix, desc }) {
+  const [count, ref] = useCountUp(target);
+  return (
+    <div ref={ref} className="ava-problem__card">
+      <div className="ava-problem__stat">{prefix}{count}{suffix}</div>
+      <p className="ava-problem__desc">{desc}</p>
+    </div>
+  );
+}
+
+/* ── Press bar ── */
+function PressBar() {
+  const items = ["Hospitality Tech", "Hotel Management", "AI Business Review", "Future Hospitality", "TechCrunch"];
+  return (
+    <div className="ava-press">
+      <div className="ava-container">
+        <p className="ava-press__label">Bekannt aus</p>
+        <div className="ava-press__logos">
+          {items.map(n => <span key={n} className="ava-press__logo">{n}</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Pricing data ── */
 const PLANS = [
   {
@@ -356,6 +435,7 @@ export default function App() {
       {/* ── HERO ── */}
       <section className="ava-hero">
         <ParticleCanvas />
+        <div className="ava-hero__orb" />
         <div className="ava-hero__glow" />
         <div className="ava-hero__grid-bg" />
         <div className="ava-hero__scan" />
@@ -367,8 +447,8 @@ export default function App() {
           </div>
 
           <h1 className="ava-hero__h1">
-            <span className="ava-hero__h1-light">Intelligent Systems.</span>
-            <span className="ava-hero__h1-bold">Real Results.</span>
+            <span className="ava-hero__h1-light">Der KI-Agent für</span>
+            <span className="ava-hero__h1-bold"><Typewriter words={["Hotels.", "Resorts.", "Restaurants.", "Spas.", "Ihr Haus."]} /></span>
           </h1>
 
           <p className="ava-hero__sub">
@@ -410,6 +490,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <PressBar />
 
       {/* ── WHY AVA ── */}
       <section className="ava-section" id="why">
@@ -460,15 +542,12 @@ export default function App() {
 
           <div className="ava-problem__grid">
             {[
-              { stat: "62%", desc: "der Gäste rufen nach Mailbox nicht mehr zurück" },
-              { stat: "3 Sek", desc: "genügen, um einen Interessenten zu verlieren" },
-              { stat: "€15k", desc: "monatliche Kosten für manuelle Rezeptionsarbeit" },
-              { stat: "0%", desc: "der verpassten Anrufe werden nach Feierabend beantwortet" },
-            ].map(({ stat, desc }) => (
-              <div key={stat} className="ava-problem__card">
-                <div className="ava-problem__stat">{stat}</div>
-                <p className="ava-problem__desc">{desc}</p>
-              </div>
+              { target: 62, prefix: "", suffix: "%", desc: "der Gäste rufen nach Mailbox nicht mehr zurück" },
+              { target: 3,  prefix: "", suffix: " Sek", desc: "genügen, um einen Interessenten zu verlieren" },
+              { target: 15, prefix: "€", suffix: "k",   desc: "monatliche Kosten für manuelle Rezeptionsarbeit" },
+              { target: 0,  prefix: "", suffix: "%",    desc: "der verpassten Anrufe werden nach Feierabend beantwortet" },
+            ].map((item) => (
+              <StatCard key={item.desc} {...item} />
             ))}
           </div>
         </div>
@@ -726,6 +805,26 @@ export default function App() {
               <CalendlyEmbed />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── CTA BAND ── */}
+      <section className="ava-cta-band">
+        <div className="ava-cta-band__orb" />
+        <div className="ava-container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
+          <p className="ava-eyebrow" style={{ color: "rgba(255,255,255,0.45)" }}>Bereit für den nächsten Schritt?</p>
+          <h2 className="ava-cta-band__h2">Ihr Hotel verdient<br />das Beste.</h2>
+          <p className="ava-cta-band__sub">
+            Schließen Sie sich den Hotels an, die AVA bereits nutzen — und nie zurückblicken.
+          </p>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
+              className="ava-btn ava-btn--primary ava-btn--lg">
+              Kostenloses Gespräch buchen <span className="ava-btn__arrow">→</span>
+            </a>
+            <a href="#pricing" className="ava-btn ava-btn--ghost ava-btn--lg">Preise ansehen</a>
+          </div>
+          <p className="ava-cta-band__note">Keine Kreditkarte · Keine Bindung · Antwort in 24h</p>
         </div>
       </section>
 
