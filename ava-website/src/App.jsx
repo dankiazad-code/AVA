@@ -467,6 +467,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <a href="#main-content" className="ava-skip-link">Zum Inhalt springen</a>
 
       <StatsTicker />
 
@@ -486,7 +487,7 @@ export default function App() {
           <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer" className="ava-btn ava-btn--nav">
             Termin buchen
           </a>
-          <button className="ava-nav__burger" aria-label="Menü" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="ava-nav__burger" aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
             <span /><span /><span />
           </button>
         </div>
@@ -500,7 +501,7 @@ export default function App() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="ava-hero">
+      <section className="ava-hero" id="main-content" aria-label="Hero">
         <GradientMesh />
         <div className="ava-hero__orb" />
         <div className="ava-hero__glow" />

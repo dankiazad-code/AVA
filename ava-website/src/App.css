@@ -3,7 +3,26 @@
    Intelligent Systems. Real Results.
    ───────────────────────────────────────────── */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&font-display=swap');
+
+/* ── Skip Link (Accessibility) ── */
+.ava-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: var(--blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.ava-skip-link:focus {
+  top: 1rem;
+}
 
 /* ── Tokens ── */
 :root {
