@@ -61,7 +61,7 @@ function VapiCallButton({ size = "md" }) {
       v.on("call-start", onStart);
       v.on("call-end",   onEnd);
       v.on("error",      onErr);
-    });
+    }).catch(err => console.error("Vapi load failed:", err));
 
     return () => {
       mountedRef.current = false;
