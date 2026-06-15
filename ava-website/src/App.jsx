@@ -17,6 +17,59 @@ function useReveal() {
   return ref;
 }
 
+/* ── SVG Icons ── */
+const Icon = {
+  mic:      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>,
+  globe:    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+  link:     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+  zap:      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+  building: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M16 11h.01"/></svg>,
+  shield:   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+};
+
+/* ── Gradient Mesh ── */
+function GradientMesh() {
+  return (
+    <div className="ava-mesh" aria-hidden="true">
+      <div className="ava-mesh__blob ava-mesh__blob--1" />
+      <div className="ava-mesh__blob ava-mesh__blob--2" />
+      <div className="ava-mesh__blob ava-mesh__blob--3" />
+    </div>
+  );
+}
+
+/* ── Stats Ticker ── */
+const TICKER = ["● 500+ Hotels vertrauen AVA", "€2.1M eingespart", "99.9% Uptime", "40+ Sprachen", "< 1s Reaktionszeit", "24/7 verfügbar", "3 Wochen bis Go-Live", "Kein Langzeitvertrag"];
+function StatsTicker() {
+  const items = [...TICKER, ...TICKER];
+  return (
+    <div className="ava-ticker" aria-hidden="true">
+      <div className="ava-ticker__track">
+        {items.map((s, i) => <span key={i} className="ava-ticker__item">{s}<span className="ava-ticker__sep">·</span></span>)}
+      </div>
+    </div>
+  );
+}
+
+/* ── Magnetic Button ── */
+function MagBtn({ children, href, className, target, rel, style }) {
+  const ref = useRef(null);
+  function onMove(e) {
+    const r = ref.current.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width / 2) * 0.25;
+    const y = (e.clientY - r.top - r.height / 2) * 0.25;
+    ref.current.style.transform = `translate(${x}px,${y}px)`;
+  }
+  function onLeave() { ref.current.style.transform = ''; }
+  return (
+    <a ref={ref} href={href} className={className} target={target} rel={rel}
+      onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{ transition: 'transform 0.45s cubic-bezier(0.34,1.56,0.64,1)', ...style }}>
+      {children}
+    </a>
+  );
+}
+
 /* ── Count-up animation ── */
 function useCountUp(target, duration = 1800) {
   const [count, setCount] = useState(0);
@@ -331,6 +384,15 @@ function PressBar() {
   );
 }
 
+/* ── Testimonials data ── */
+const TESTIMONIALS = [
+  { quote: "AVA nimmt jeden Anruf sofort an. Wir sind von 40% verpasster Buchungen auf 100% Erfassungsrate gegangen. Umsatz +€28k im ersten Monat.", name: "Markus H.", role: "GM · Grand Vienna Hotel", initials: "MH" },
+  { quote: "Unsere Website-Conversion hat sich verdreifacht. Gäste erwähnen das Design ständig als erstes Argument für unser Haus.", name: "Sarah L.", role: "CEO · EstateFlow Realty", initials: "SL" },
+  { quote: "Das Automationssystem von AVA spart unserem Team 40+ Stunden pro Woche. Wie fünf neue Mitarbeiter für €399 im Monat.", name: "Dr. Karim R.", role: "Direktor · NexGen Clinics", initials: "KR" },
+  { quote: "Innerhalb von 3 Tagen war AVA live. Reibungslose Einrichtung, das Team war immer erreichbar. Wir würden es jedem Hotel empfehlen.", name: "Lisa M.", role: "Inhaberin · Boutique Hotel Salzburg", initials: "LM" },
+  { quote: "AVA beantwortet Anfragen auf Deutsch, Englisch und Japanisch — unsere internationalen Gäste lieben es. Kein verpasster Anruf mehr.", name: "Thomas K.", role: "Manager · Alpine Resort", initials: "TK" },
+];
+
 /* ── Pricing data ── */
 const PLANS = [
   {
@@ -403,6 +465,8 @@ export default function App() {
   return (
     <div className="app">
 
+      <StatsTicker />
+
       {/* ── NAV ── */}
       <nav className={`ava-nav${scrolled ? " ava-nav--scrolled" : ""}`}>
         <div className="ava-nav__inner">
@@ -434,7 +498,7 @@ export default function App() {
 
       {/* ── HERO ── */}
       <section className="ava-hero">
-        <ParticleCanvas />
+        <GradientMesh />
         <div className="ava-hero__orb" />
         <div className="ava-hero__glow" />
         <div className="ava-hero__grid-bg" />
@@ -457,15 +521,15 @@ export default function App() {
           </p>
 
           <div className="ava-hero__actions">
-            <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
+            <MagBtn href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
               className="ava-btn ava-btn--primary ava-btn--lg">
               Kostenloses Strategiegespräch
               <span className="ava-btn__arrow">→</span>
-            </a>
-            <a href="#why" className="ava-btn ava-btn--ghost ava-btn--lg">
+            </MagBtn>
+            <MagBtn href="#why" className="ava-btn ava-btn--ghost ava-btn--lg">
               <span className="ava-btn__play">▶</span>
               Mehr erfahren
-            </a>
+            </MagBtn>
           </div>
 
           <div className="ava-call">
@@ -629,12 +693,12 @@ export default function App() {
           </div>
           <div className="ava-features__grid" style={{ marginTop: "4rem" }}>
             {[
-              { icon: "🎙️", title: "KI Voice Agent", body: "Gespräche auf menschlichem Niveau — bucht, qualifiziert und konvertiert rund um die Uhr." },
-              { icon: "🌐", title: "Premium Websites", body: "Hochkonvertierende Websites für moderne Hotels — designed für Vertrauen und Performance." },
-              { icon: "🔗", title: "CRM-Integration", body: "Nahtlose Anbindung an Salesforce, HubSpot, Mews, Opera und 200+ weitere Systeme." },
-              { icon: "⚡", title: "Workflow-Automation", body: "End-to-End-Automatisierung von Buchungen, E-Mails, Follow-ups und Reports." },
-              { icon: "🏨", title: "Hotel AI System", body: "Speziell entwickelt für Hospitality: Concierge-AI, Room Service, Gästebetreuung." },
-              { icon: "🔐", title: "DSGVO & Sicherheit", body: "Ende-zu-Ende verschlüsselt, EU-Server, vollständig DSGVO-konform. Ihre Daten bleiben Ihre Daten." },
+              { icon: Icon.mic,      title: "KI Voice Agent",      body: "Gespräche auf menschlichem Niveau — bucht, qualifiziert und konvertiert rund um die Uhr." },
+              { icon: Icon.globe,    title: "Premium Websites",    body: "Hochkonvertierende Websites für moderne Hotels — designed für Vertrauen und Performance." },
+              { icon: Icon.link,     title: "CRM-Integration",     body: "Nahtlose Anbindung an Salesforce, HubSpot, Mews, Opera und 200+ weitere Systeme." },
+              { icon: Icon.zap,      title: "Workflow-Automation", body: "End-to-End-Automatisierung von Buchungen, E-Mails, Follow-ups und Reports." },
+              { icon: Icon.building, title: "Hotel AI System",     body: "Speziell entwickelt für Hospitality: Concierge-AI, Room Service, Gästebetreuung." },
+              { icon: Icon.shield,   title: "DSGVO & Sicherheit",  body: "Ende-zu-Ende verschlüsselt, EU-Server, vollständig DSGVO-konform. Ihre Daten bleiben Ihre Daten." },
             ].map(({ icon, title, body }) => (
               <div key={title} className="ava-feature">
                 <span className="ava-feature__icon">{icon}</span>
@@ -741,24 +805,22 @@ export default function App() {
             <p className="ava-eyebrow">Kundenstimmen</p>
             <h2 className="ava-h2">Echte Betriebe.<br /><em>Echtes Wachstum.</em></h2>
           </div>
-          <div className="ava-testimonials" style={{ marginTop: "4rem" }}>
-            {[
-              { quote: "AVA nimmt jeden Anruf sofort an. Wir sind von 40% verpasster Buchungen auf 100% Erfassungsrate gegangen. Umsatz +€28k im ersten Monat.", name: "Markus H.", role: "GM · Grand Vienna Hotel", initials: "MH" },
-              { quote: "Unsere Website-Conversion hat sich verdreifacht. Das Design ist unreal — Gäste erwähnen es ständig als erstes Argument für unser Haus.", name: "Sarah L.", role: "CEO · EstateFlow Realty", initials: "SL" },
-              { quote: "Das Automationssystem von AVA spart unserem Team 40+ Stunden pro Woche. Wie fünf neue Mitarbeiter für €399 im Monat.", name: "Dr. Karim R.", role: "Direktor · NexGen Clinics", initials: "KR" },
-            ].map(({ quote, name, role, initials }) => (
-              <div key={name} className="ava-testimonial">
-                <div className="ava-testimonial__stars">★★★★★</div>
-                <p className="ava-testimonial__quote">"{quote}"</p>
-                <div className="ava-testimonial__author">
-                  <div className="ava-testimonial__avatar">{initials}</div>
-                  <div>
-                    <div className="ava-testimonial__name">{name}</div>
-                    <div className="ava-testimonial__role">{role}</div>
+          <div className="ava-carousel" style={{ marginTop: "4rem" }}>
+            <div className="ava-carousel__track">
+              {[...TESTIMONIALS, ...TESTIMONIALS].map(({ quote, name, role, initials }, i) => (
+                <div key={i} className="ava-testimonial">
+                  <div className="ava-testimonial__stars">★★★★★</div>
+                  <p className="ava-testimonial__quote">"{quote}"</p>
+                  <div className="ava-testimonial__author">
+                    <div className="ava-testimonial__avatar">{initials}</div>
+                    <div>
+                      <div className="ava-testimonial__name">{name}</div>
+                      <div className="ava-testimonial__role">{role}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
