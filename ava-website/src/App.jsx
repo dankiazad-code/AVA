@@ -1,9 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import Vapi from "@vapi-ai/web";
 
-const vapi = new Vapi("11a16c26-443f-4159-a318-204ec041741b");
 const ASSISTANT_ID = "75d1fe79-eb98-48e0-97dc-f917f5610725";
+const VAPI_KEY    = "11a16c26-443f-4159-a318-204ec041741b";
+
+let vapiInstance = null;
+let vapiLoadPromise = null;
+function loadVapi() {
+  if (!vapiLoadPromise) {
+    vapiLoadPromise = import("@vapi-ai/web").then(m => {
+      const Vapi = m.default;
+      vapiInstance = new Vapi(VAPI_KEY);
+      return vapiInstance;
+    });
+  }
+  return vapiLoadPromise;
+}
 
 /* ── Scroll reveal ── */
 function useReveal() {
@@ -35,26 +47,37 @@ const Icon = {
 function VapiCallButton({ size = "md" }) {
   const [status, setStatus] = useState("idle"); // idle | connecting | active
   const mountedRef = useRef(true);
+  const vapiRef = useRef(null);
 
   useEffect(() => {
     mountedRef.current = true;
     const onStart = () => { if (mountedRef.current) setStatus("active"); };
     const onEnd   = () => { if (mountedRef.current) setStatus("idle"); };
     const onErr   = () => { if (mountedRef.current) setStatus("idle"); };
-    vapi.on("call-start", onStart);
-    vapi.on("call-end",   onEnd);
-    vapi.on("error",      onErr);
+
+    loadVapi().then(v => {
+      if (!mountedRef.current) return;
+      vapiRef.current = v;
+      v.on("call-start", onStart);
+      v.on("call-end",   onEnd);
+      v.on("error",      onErr);
+    });
+
     return () => {
       mountedRef.current = false;
-      vapi.off("call-start", onStart);
-      vapi.off("call-end",   onEnd);
-      vapi.off("error",      onErr);
+      if (vapiRef.current) {
+        vapiRef.current.off("call-start", onStart);
+        vapiRef.current.off("call-end",   onEnd);
+        vapiRef.current.off("error",      onErr);
+      }
     };
   }, []);
 
   function toggle() {
-    if (status === "idle") { setStatus("connecting"); vapi.start(ASSISTANT_ID); }
-    else { vapi.stop(); setStatus("idle"); }
+    const v = vapiRef.current;
+    if (!v) return;
+    if (status === "idle") { setStatus("connecting"); v.start(ASSISTANT_ID); }
+    else { v.stop(); setStatus("idle"); }
   }
 
   return (
