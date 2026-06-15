@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import "./App.css";
+
+const ROICalc      = lazy(() => import("./components/ROICalc.jsx"));
+const CalendlyEmbed = lazy(() => import("./components/CalendlyEmbed.jsx"));
 
 const ASSISTANT_ID = "75d1fe79-eb98-48e0-97dc-f917f5610725";
 const VAPI_KEY    = "11a16c26-443f-4159-a318-204ec041741b";
@@ -332,56 +335,6 @@ function CallDemo() {
   );
 }
 
-/* ── ROI Calculator ── */
-function ROICalc() {
-  const [hours, setHours] = useState(20);
-  const [wage, setWage] = useState(18);
-  const [missed, setMissed] = useState(30);
-
-  const staffCost = Math.round(hours * wage * 4.3);
-  const missedRevenue = Math.round(missed * 120);
-  const totalLoss = staffCost + missedRevenue;
-  const saving = Math.max(0, totalLoss - 399);
-
-  return (
-    <div className="ava-roi">
-      <div className="ava-roi__inputs">
-        <label className="ava-roi__label">
-          Telefonstunden Rezeption / Woche
-          <span className="ava-roi__value-display">{hours} Std</span>
-        </label>
-        <input className="ava-roi__slider" type="range" min={5} max={60} step={1} value={hours} onChange={e => setHours(+e.target.value)} />
-
-        <label className="ava-roi__label">
-          Stundenlohn Rezeption
-          <span className="ava-roi__value-display">€{wage}/Std</span>
-        </label>
-        <input className="ava-roi__slider" type="range" min={12} max={50} step={1} value={wage} onChange={e => setWage(+e.target.value)} />
-
-        <label className="ava-roi__label">
-          Verpasste Buchungen / Monat
-          <span className="ava-roi__value-display">{missed}</span>
-        </label>
-        <input className="ava-roi__slider" type="range" min={5} max={200} step={5} value={missed} onChange={e => setMissed(+e.target.value)} />
-      </div>
-      <div className="ava-roi__output">
-        <div className="ava-roi__row"><span>Monatliche Telefonkosten</span><strong>€{staffCost.toLocaleString()}</strong></div>
-        <div className="ava-roi__row"><span>Entgangener Umsatz (à €120)</span><strong>€{missedRevenue.toLocaleString()}</strong></div>
-        <div className="ava-roi__row"><span>AVA Starter (monatlich)</span><strong className="ava-roi__blue">€399</strong></div>
-        <div className="ava-roi__result">
-          <span>Monatliche Ersparnis</span>
-          <strong className="ava-roi__result-value">€{saving.toLocaleString()}</strong>
-        </div>
-        <div style={{ marginTop: "1.5rem" }}>
-          <a href="#contact" className="ava-btn ava-btn--primary ava-btn--lg" style={{ width: "100%", justifyContent: "center" }}>
-            Jetzt sparen →
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── FAQ ── */
 const FAQS = [
   { q: "Wie schnell ist AVA einsatzbereit?", a: "Die meisten Kunden gehen innerhalb von 3 Werktagen live. Wir übernehmen die komplette Einrichtung, Stimmtraining und Integration in Ihre bestehenden Systeme." },
@@ -405,17 +358,6 @@ function FAQ() {
         </div>
       ))}
     </div>
-  );
-}
-
-/* ── Calendly Embed ── */
-function CalendlyEmbed() {
-  return (
-    <div
-      className="calendly-inline-widget"
-      data-url="https://calendly.com/dankiazad/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0E0E1A&text_color=F2F2F8&primary_color=0078FF"
-      style={{ minWidth: "280px", height: "660px" }}
-    />
   );
 }
 
@@ -836,7 +778,11 @@ export default function App() {
               Bewegen Sie die Regler auf Ihre Situation. AVA amortisiert sich bereits in der ersten Woche.
             </p>
           </div>
-          <div ref={r8} className="ava-reveal"><ROICalc /></div>
+          <div ref={r8} className="ava-reveal">
+            <Suspense fallback={<div style={{ height: 300, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-2)" }}>Lädt…</div>}>
+              <ROICalc />
+            </Suspense>
+          </div>
         </div>
       </section>
 
@@ -934,7 +880,9 @@ export default function App() {
               </p>
             </div>
             <div className="ava-contact__calendly">
-              <CalendlyEmbed />
+              <Suspense fallback={<div style={{ height: 660, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-2)" }}>Lädt…</div>}>
+                <CalendlyEmbed />
+              </Suspense>
             </div>
           </div>
         </div>
