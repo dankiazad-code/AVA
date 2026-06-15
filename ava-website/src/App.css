@@ -1314,6 +1314,95 @@ input, textarea, select { font: inherit; }
   color: var(--gray-2);
 }
 
+/* ── Vapi Call Button ── */
+@keyframes vapi-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,214,143,0.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(0,214,143,0); }
+}
+@keyframes vapi-bar {
+  0%,100% { transform: scaleY(0.3); }
+  50%     { transform: scaleY(1); }
+}
+
+.ava-vapi {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-radius: 100px;
+  border: 1px solid rgba(0,214,143,0.35);
+  background: rgba(0,214,143,0.06);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.ava-vapi:hover {
+  background: rgba(0,214,143,0.12);
+  border-color: rgba(0,214,143,0.6);
+  box-shadow: 0 0 30px rgba(0,214,143,0.15);
+  transform: translateY(-1px);
+}
+.ava-vapi--lg { font-size: 1rem; padding: 0.85rem 1.75rem; }
+.ava-vapi--md { font-size: 0.9rem; padding: 0.65rem 1.4rem; }
+
+.ava-vapi__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.ava-vapi--idle    .ava-vapi__dot { animation: vapi-pulse 2s ease-in-out infinite; }
+.ava-vapi--connecting .ava-vapi__dot { background: #FFD60A; animation: blink 0.6s ease-in-out infinite; }
+.ava-vapi--active  .ava-vapi__dot { background: #FF4444; animation: vapi-pulse 1s ease-in-out infinite; }
+
+.ava-vapi--active {
+  border-color: rgba(255,68,68,0.5);
+  background: rgba(255,68,68,0.08);
+}
+.ava-vapi--active:hover {
+  background: rgba(255,68,68,0.15);
+  border-color: rgba(255,68,68,0.7);
+  box-shadow: 0 0 30px rgba(255,68,68,0.15);
+}
+
+.ava-vapi__label { flex: 1; }
+
+.ava-vapi__wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.ava-vapi--active .ava-vapi__wave { opacity: 1; }
+.ava-vapi__wave span {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background: #FF4444;
+  border-radius: 2px;
+  transform-origin: center;
+  animation: vapi-bar 0.8s ease-in-out infinite alternate;
+}
+
+.ava-vapi__hero-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+.ava-vapi__hint {
+  font-size: 0.75rem;
+  color: var(--gray-2);
+  letter-spacing: 0.04em;
+}
+
 /* ── Stats Ticker ── */
 @keyframes ticker-scroll {
   from { transform: translateX(0); }

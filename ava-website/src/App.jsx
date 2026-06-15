@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
+import Vapi from "@vapi-ai/web";
+
+const vapi = new Vapi("11a16c26-443f-4159-a318-204ec041741b");
+const ASSISTANT_ID = "75d1fe79-eb98-48e0-97dc-f917f5610725";
 
 /* ── Scroll reveal ── */
 function useReveal() {
@@ -26,6 +30,47 @@ const Icon = {
   building: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M16 11h.01"/></svg>,
   shield:   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
 };
+
+/* ── Vapi Call Button ── */
+function VapiCallButton({ size = "md" }) {
+  const [status, setStatus] = useState("idle"); // idle | connecting | active
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    const onStart = () => { if (mountedRef.current) setStatus("active"); };
+    const onEnd   = () => { if (mountedRef.current) setStatus("idle"); };
+    const onErr   = () => { if (mountedRef.current) setStatus("idle"); };
+    vapi.on("call-start", onStart);
+    vapi.on("call-end",   onEnd);
+    vapi.on("error",      onErr);
+    return () => {
+      mountedRef.current = false;
+      vapi.off("call-start", onStart);
+      vapi.off("call-end",   onEnd);
+      vapi.off("error",      onErr);
+    };
+  }, []);
+
+  function toggle() {
+    if (status === "idle") { setStatus("connecting"); vapi.start(ASSISTANT_ID); }
+    else { vapi.stop(); setStatus("idle"); }
+  }
+
+  return (
+    <button onClick={toggle} className={`ava-vapi ava-vapi--${status} ava-vapi--${size}`}>
+      <span className="ava-vapi__dot" />
+      <span className="ava-vapi__label">
+        {status === "idle"       && "AVA jetzt anrufen"}
+        {status === "connecting" && "Verbinde…"}
+        {status === "active"     && "Gespräch beenden"}
+      </span>
+      <span className="ava-vapi__wave">
+        {[0,1,2,3,4].map(i => <span key={i} style={{ animationDelay: `${i * 0.1}s` }} />)}
+      </span>
+    </button>
+  );
+}
 
 /* ── Gradient Mesh ── */
 function GradientMesh() {
@@ -527,6 +572,11 @@ export default function App() {
             </MagBtn>
           </div>
 
+          <div className="ava-vapi__hero-wrap">
+            <VapiCallButton size="lg" />
+            <span className="ava-vapi__hint">Sprich jetzt live mit AVA — direkt im Browser</span>
+          </div>
+
           <div className="ava-call">
             <CallDemo />
           </div>
@@ -853,6 +903,10 @@ export default function App() {
                     <span>✓</span> {item}
                   </div>
                 ))}
+              </div>
+              <div style={{ marginTop: "2rem" }}>
+                <p style={{ fontSize: "0.75rem", color: "var(--gray-2)", marginBottom: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>Oder sprechen Sie jetzt mit AVA</p>
+                <VapiCallButton size="md" />
               </div>
               <p style={{ marginTop: "1.5rem", fontSize: "0.85rem", color: "var(--gray-2)" }}>
                 ↗ Wählen Sie rechts direkt Ihren Wunschtermin aus.
