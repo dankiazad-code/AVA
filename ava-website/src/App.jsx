@@ -164,10 +164,10 @@ function ParticleCanvas() {
 }
 
 /* ── AVA Wordmark Logo ── */
-function AVALogo({ height = 38 }) {
+function AVALogo({ height = 52 }) {
   return (
     <img src="/ava-icon.png" alt="AVA" height={height} width={height}
-      style={{ display: 'block', borderRadius: '9px' }} />
+      style={{ display: 'block', borderRadius: '11px' }} />
   );
 }
 
