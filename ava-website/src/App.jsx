@@ -47,37 +47,35 @@ const Icon = {
 function VapiCallButton({ size = "md" }) {
   const [status, setStatus] = useState("idle"); // idle | connecting | active
   const mountedRef = useRef(true);
-  const vapiRef = useRef(null);
 
   useEffect(() => {
     mountedRef.current = true;
     const onStart = () => { if (mountedRef.current) setStatus("active"); };
     const onEnd   = () => { if (mountedRef.current) setStatus("idle"); };
-    const onErr   = () => { if (mountedRef.current) setStatus("idle"); };
+    const onErr   = (e) => { console.error("Vapi error:", e); if (mountedRef.current) setStatus("idle"); };
 
     loadVapi().then(v => {
       if (!mountedRef.current) return;
-      vapiRef.current = v;
       v.on("call-start", onStart);
       v.on("call-end",   onEnd);
       v.on("error",      onErr);
     }).catch(err => console.error("Vapi load failed:", err));
 
-    return () => {
-      mountedRef.current = false;
-      if (vapiRef.current) {
-        vapiRef.current.off("call-start", onStart);
-        vapiRef.current.off("call-end",   onEnd);
-        vapiRef.current.off("error",      onErr);
-      }
-    };
+    return () => { mountedRef.current = false; };
   }, []);
 
   function toggle() {
-    const v = vapiRef.current;
-    if (!v) return;
-    if (status === "idle") { setStatus("connecting"); v.start(ASSISTANT_ID); }
-    else { v.stop(); setStatus("idle"); }
+    if (status === "connecting") return;
+    if (status === "active") {
+      loadVapi().then(v => v.stop());
+      setStatus("idle");
+    } else {
+      setStatus("connecting");
+      loadVapi().then(v => v.start(ASSISTANT_ID)).catch(err => {
+        console.error("Vapi start failed:", err);
+        setStatus("idle");
+      });
+    }
   }
 
   return (
