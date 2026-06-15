@@ -85,22 +85,39 @@ function CallDemo() {
   const [done, setDone] = useState(false);
   const [open, setOpen] = useState(false);
   const idxRef = useRef(0);
+  const timersRef = useRef([]);
+
+  function clearTimers() {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }
 
   useEffect(() => {
     if (!open) return;
-    setLines([]); setDone(false); idxRef.current = 0;
+    clearTimers();
+    setLines([]); setDone(false); setTyping(false); idxRef.current = 0;
+    let cancelled = false;
+
     function addNext() {
+      if (cancelled) return;
       if (idxRef.current >= SCRIPT.length) { setTyping(false); setDone(true); return; }
       setTyping(true);
-      setTimeout(() => {
+      const t1 = setTimeout(() => {
+        if (cancelled) return;
         setLines(prev => [...prev, SCRIPT[idxRef.current]]);
         idxRef.current += 1;
         setTyping(false);
-        setTimeout(addNext, 750);
+        const t2 = setTimeout(addNext, 750);
+        timersRef.current.push(t2);
       }, idxRef.current === 0 ? 400 : 950);
+      timersRef.current.push(t1);
     }
     addNext();
+
+    return () => { cancelled = true; clearTimers(); };
   }, [open]);
+
+  function restart() { setOpen(false); setTimeout(() => setOpen(true), 50); }
 
   if (!open) {
     return (
@@ -143,6 +160,7 @@ function CallDemo() {
           <div className="ava-call__done">
             <span className="ava-call__done-icon">✓</span>
             Buchung bestätigt · Kein Mensch benötigt
+            <button onClick={restart} style={{ marginLeft: '12px', background: 'none', border: '1px solid rgba(255,255,255,0.3)', color: 'white', borderRadius: '6px', padding: '2px 10px', cursor: 'pointer', fontSize: '0.75rem' }}>↺ Nochmal</button>
           </div>
         )}
       </div>
