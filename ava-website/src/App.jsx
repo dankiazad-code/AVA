@@ -80,48 +80,45 @@ const SCRIPT = [
 ];
 
 function CallDemo() {
+  const [phase, setPhase] = useState("idle"); // idle | running | done
   const [lines, setLines] = useState([]);
   const [typing, setTyping] = useState(false);
-  const [done, setDone] = useState(false);
-  const [open, setOpen] = useState(false);
-  const idxRef = useRef(0);
-  const timersRef = useRef([]);
-
-  function clearTimers() {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  }
+  const mountedRef = useRef(true);
+  const timerRef = useRef(null);
 
   useEffect(() => {
-    if (!open) return;
-    clearTimers();
-    setLines([]); setDone(false); setTyping(false); idxRef.current = 0;
-    let cancelled = false;
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      clearTimeout(timerRef.current);
+    };
+  }, []);
 
-    function addNext() {
-      if (cancelled) return;
-      if (idxRef.current >= SCRIPT.length) { setTyping(false); setDone(true); return; }
+  function start() {
+    clearTimeout(timerRef.current);
+    setLines([]);
+    setTyping(false);
+    setPhase("running");
+    let idx = 0;
+    function step() {
+      if (!mountedRef.current) return;
+      if (idx >= SCRIPT.length) { setTyping(false); setPhase("done"); return; }
       setTyping(true);
-      const t1 = setTimeout(() => {
-        if (cancelled) return;
-        setLines(prev => [...prev, SCRIPT[idxRef.current]]);
-        idxRef.current += 1;
+      timerRef.current = setTimeout(() => {
+        if (!mountedRef.current) return;
+        const entry = SCRIPT[idx];
+        idx++;
+        setLines(prev => [...prev, entry]);
         setTyping(false);
-        const t2 = setTimeout(addNext, 750);
-        timersRef.current.push(t2);
-      }, idxRef.current === 0 ? 400 : 950);
-      timersRef.current.push(t1);
+        timerRef.current = setTimeout(step, 750);
+      }, idx === 0 ? 400 : 950);
     }
-    addNext();
+    step();
+  }
 
-    return () => { cancelled = true; clearTimers(); };
-  }, [open]);
-
-  function restart() { setOpen(false); setTimeout(() => setOpen(true), 50); }
-
-  if (!open) {
+  if (phase === "idle") {
     return (
-      <button className="ava-call__trigger" onClick={() => setOpen(true)}>
+      <button className="ava-call__trigger" onClick={start}>
         <span className="ava-call__trigger-icon">📞</span>
         <span>
           <strong>AVA live erleben — echtes Gespräch</strong>
@@ -156,11 +153,11 @@ function CallDemo() {
             <span className="ava-call__text"><span className="ava-call__cursor" /></span>
           </div>
         )}
-        {done && (
+        {phase === "done" && (
           <div className="ava-call__done">
             <span className="ava-call__done-icon">✓</span>
             Buchung bestätigt · Kein Mensch benötigt
-            <button onClick={restart} style={{ marginLeft: '12px', background: 'none', border: '1px solid rgba(255,255,255,0.3)', color: 'white', borderRadius: '6px', padding: '2px 10px', cursor: 'pointer', fontSize: '0.75rem' }}>↺ Nochmal</button>
+            <button onClick={start} style={{ marginLeft: '12px', background: 'none', border: '1px solid rgba(255,255,255,0.3)', color: 'white', borderRadius: '6px', padding: '2px 10px', cursor: 'pointer', fontSize: '0.75rem' }}>↺ Nochmal</button>
           </div>
         )}
       </div>
