@@ -9,7 +9,7 @@ let vapiLoadPromise = null;
 function loadVapi() {
   if (!vapiLoadPromise) {
     vapiLoadPromise = import("@vapi-ai/web").then(m => {
-      const Vapi = m.default;
+      const Vapi = m.default?.default ?? m.default ?? m.Vapi ?? m;
       vapiInstance = new Vapi(VAPI_KEY);
       return vapiInstance;
     });
