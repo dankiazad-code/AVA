@@ -1,6 +1,26 @@
 {
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "docx": "^9.7.1",
     "tailwindcss": "^4.3.0"
-  }
+  },
+  "name": "ava",
+  "version": "1.0.0",
+  "description": "",
+  "main": "create-kb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dankiazad-code/AVA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dankiazad-code/AVA/issues"
+  },
+  "homepage": "https://github.com/dankiazad-code/AVA#readme"
 }

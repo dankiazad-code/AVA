@@ -943,8 +943,12 @@ export default function App() {
             </div>
           </div>
           <div className="ava-footer__bottom">
-            <span>© {new Date().getFullYear()} AVA Agency. Alle Rechte vorbehalten.</span>
-            <span style={{ color: "var(--blue-bright)", fontWeight: "500" }}>Intelligent Systems. Real Results.</span>
+            <span>© {new Date().getFullYear()} AVA AI. Alle Rechte vorbehalten.</span>
+            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+              <a href="/impressum.html" style={{ color: "var(--gray-2)", fontSize: "0.82rem" }}>Impressum</a>
+              <a href="/datenschutz.html" style={{ color: "var(--gray-2)", fontSize: "0.82rem" }}>Datenschutz</a>
+              <span style={{ color: "var(--blue-bright)", fontWeight: "500" }}>Intelligent Systems. Real Results.</span>
+            </div>
           </div>
         </div>
       </footer>
