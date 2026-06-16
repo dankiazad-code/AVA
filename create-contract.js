@@ -173,7 +173,7 @@ const doc = new Document({
         new Paragraph({
           border: { top: { style: BorderStyle.SINGLE, size: 2, color: "DDDDEE", space: 4 } },
           children: [
-            new TextRun({ text: "AVA AI  ·  ava-hq.com  ·  dankiazad@gmail.com", font: "Arial", size: 17, color: GRAY_TEXT }),
+            new TextRun({ text: "AVA AI  ·  ava-hq.com  ·  contact@ava-hq.com", font: "Arial", size: 17, color: GRAY_TEXT }),
             new TextRun({ text: "        Seite ", font: "Arial", size: 17, color: GRAY_TEXT }),
             new TextRun({ children: [PageNumber.CURRENT], font: "Arial", size: 17, color: GRAY_TEXT }),
             new TextRun({ text: " / ", font: "Arial", size: 17, color: GRAY_TEXT }),
@@ -220,10 +220,10 @@ const doc = new Document({
               new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "AUFTRAGNEHMER", font: "Arial", size: 18, bold: true, color: BLUE, characterSpacing: 60 })] }),
               new Paragraph({ spacing: { before: 0, after: 40 }, children: [new TextRun({ text: "AVA AI", font: "Arial", size: 22, bold: true, color: TEXT })] }),
               new Paragraph({ spacing: { before: 0, after: 20 }, children: [new TextRun({ text: "Inhaber: Azad Danki & Benjamin Serifovic", font: "Arial", size: 20, color: TEXT })] }),
-              new Paragraph({ spacing: { before: 0, after: 20 }, children: [new TextRun({ text: "Karl-von-Hahn-Str. 25, 72250 Freudenstadt", font: "Arial", size: 20, color: TEXT })] }),
+              new Paragraph({ spacing: { before: 0, after: 20 }, children: [new TextRun({ text: "Herzog-Eugen-Str. 56/58, 72250 Freudenstadt", font: "Arial", size: 20, color: TEXT })] }),
               new Paragraph({ spacing: { before: 0, after: 20 }, children: [new TextRun({ text: "USt-IdNr.: in Beantragung", font: "Arial", size: 20, color: TEXT })] }),
               new Paragraph({ spacing: { before: 0, after: 20 }, children: [new TextRun({ text: "Web: ava-hq.com", font: "Arial", size: 20, color: TEXT })] }),
-              new Paragraph({ spacing: { before: 0, after: 0 }, children: [new TextRun({ text: "E-Mail: dankiazad@gmail.com", font: "Arial", size: 20, color: TEXT })] }),
+              new Paragraph({ spacing: { before: 0, after: 0 }, children: [new TextRun({ text: "E-Mail: contact@ava-hq.com", font: "Arial", size: 20, color: TEXT })] }),
             ]
           }),
           new TableCell({ borders: nobs, width: { size: 360, type: WidthType.DXA }, children: [new Paragraph({ children: [] })] }),
