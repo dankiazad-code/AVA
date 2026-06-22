@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nübel-Bau GmbH – Ihr Fachbetrieb für Hoch- und Tiefbau im Nordschwarzwald</title>
+  <meta name="description" content="Nübel-Bau GmbH – Seit 1970 Ihr zuverlässiger Partner für Hochbau, Tiefbau, Außenanlagen und Renovierung im Nordschwarzwald. Drei Generationen Meisterbetrieb." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1C3A5E;
+      --primary-dark: #0F2238;
+      --accent: #D4520A;
+      --accent-light: #F06A1A;
+      --gold: #C9A84C;
+      --white: #FFFFFF;
+      --gray-50: #F8F9FA;
+      --gray-100: #F1F3F5;
+      --gray-200: #E9ECEF;
+      --gray-400: #ADB5BD;
+      --gray-600: #6C757D;
+      --gray-800: #343A40;
+      --gray-900: #212529;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+      --shadow-md: 0 8px 32px rgba(0,0,0,.12);
+      --shadow-lg: 0 16px 64px rgba(0,0,0,.16);
+      --radius: 8px;
+      --radius-lg: 16px;
+      --transition: all .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── UTILITIES ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+
+    .label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .label::before {
+      content: ''; display: block; width: 28px; height: 2px; background: var(--accent);
+    }
+
+    .heading-xl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15; color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    .heading-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.2; color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+    .text-lead {
+      font-size: 1.1rem; line-height: 1.75; color: var(--gray-600);
+      max-width: 600px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer; transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--white);
+      border-color: var(--accent);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light); border-color: var(--accent-light);
+      transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,82,10,.3);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border-color: rgba(255,255,255,.6);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1); border-color: var(--white);
+    }
+    .btn-dark {
+      background: var(--primary); color: var(--white); border-color: var(--primary);
+    }
+    .btn-dark:hover {
+      background: var(--primary-dark); border-color: var(--primary-dark);
+      transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,58,94,.3);
+    }
+
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,82,10,.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(212,82,10,0); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(36px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(.94); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0;
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(15,34,56,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(0,0,0,.2);
+    }
+
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 14px; text-decoration: none;
+    }
+    .nav-logo img {
+      height: 52px; width: auto; object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.3));
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700; color: var(--white);
+    }
+    .nav-logo-sub {
+      font-size: .72rem; font-weight: 500; color: var(--gray-400);
+      letter-spacing: .06em;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      display: block; padding: 8px 14px;
+      color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500;
+      text-decoration: none; border-radius: 6px;
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.1); }
+
+    .nav-cta { margin-left: 12px; }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--primary-dark); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); font-size: 1.4rem; font-weight: 600;
+      text-decoration: none; transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: var(--white);
+      font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      position: absolute; inset: 0;
+    }
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(15,34,56,.78) 0%,
+        rgba(15,34,56,.45) 60%,
+        rgba(212,82,10,.12) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(212,82,10,.2); border: 1px solid rgba(212,82,10,.4);
+      backdrop-filter: blur(8px); border-radius: 100px;
+      padding: 8px 20px; margin-bottom: 28px;
+      color: #FFB085; font-size: 13px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      animation: fadeIn 1s ease .3s both;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; background: var(--accent-light);
+      border-radius: 50%; animation: pulse 2s infinite;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800; line-height: 1.1;
+      color: var(--white); margin-bottom: 24px;
+      animation: fadeUp 1s ease .5s both;
+    }
+    .hero-title span { color: var(--accent-light); }
+
+    .hero-desc {
+      font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,.82);
+      margin-bottom: 40px; max-width: 560px;
+      animation: fadeUp 1s ease .7s both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeUp 1s ease .9s both;
+    }
+
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: rgba(15,34,56,.88); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stats-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      padding: 28px 24px;
+    }
+    .hero-stat {
+      text-align: center; padding: 0 16px;
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--accent-light);
+      line-height: 1;
+    }
+    .hero-stat-label { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: 6px; }
+
+    .hero-dots {
+      position: absolute; bottom: 140px; right: 32px; z-index: 2;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); border: none; cursor: pointer;
+      transition: var(--transition);
+    }
+    .hero-dot.active { background: var(--accent-light); transform: scale(1.4); }
+
+    /* ── SERVICES ── */
+    #leistungen { background: var(--white); }
+
+    .services-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: end; margin-bottom: 64px;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 36px 28px; border: 1px solid var(--gray-200);
+      transition: var(--transition); cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute;
+      inset: 0; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      opacity: 0; transition: var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover .service-icon,
+    .service-card:hover .service-title,
+    .service-card:hover .service-desc { color: var(--white); }
+    .service-card:hover .service-icon-wrap { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.2); }
+    .service-card:hover .service-arrow { color: var(--accent-light); }
+
+    .service-icon-wrap {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: rgba(212,82,10,.08); border: 1.5px solid rgba(212,82,10,.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; transition: var(--transition);
+      position: relative; z-index: 1;
+    }
+    .service-icon { color: var(--accent); font-size: 1.5rem; transition: var(--transition); position: relative; z-index: 1; }
+    .service-title {
+      font-weight: 700; font-size: 1.05rem; color: var(--primary-dark);
+      margin-bottom: 10px; transition: var(--transition); position: relative; z-index: 1;
+    }
+    .service-desc {
+      font-size: .88rem; line-height: 1.6; color: var(--gray-600);
+      transition: var(--transition); position: relative; z-index: 1;
+    }
+    .service-arrow {
+      display: block; margin-top: 20px; color: var(--accent);
+      font-size: 1.2rem; transition: var(--transition); position: relative; z-index: 1;
+    }
+    .service-card:hover .service-arrow { transform: translateX(6px); }
+
+    /* ── ABOUT ── */
+    #unternehmen {
+      background: var(--gray-50);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-images {
+      position: relative; height: 560px;
+    }
+    .about-img-main {
+      position: absolute; top: 0; left: 0;
+      width: 75%; height: 420px;
+      object-fit: cover; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-secondary {
+      position: absolute; bottom: 0; right: 0;
+      width: 55%; height: 280px;
+      object-fit: cover; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 4px solid var(--white);
+    }
+    .about-badge {
+      position: absolute; top: 32px; right: 0;
+      background: var(--accent); color: var(--white);
+      border-radius: var(--radius-lg); padding: 20px 24px;
+      text-align: center; z-index: 2; box-shadow: var(--shadow-md);
+    }
+    .about-badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; line-height: 1;
+    }
+    .about-badge-text { font-size: .75rem; font-weight: 600; opacity: .85; margin-top: 4px; }
+
+    .about-features { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .about-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px; border-radius: var(--radius);
+      background: var(--white); border: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+    .about-feature:hover {
+      border-color: var(--accent); box-shadow: var(--shadow-sm);
+      transform: translateX(4px);
+    }
+    .about-feature-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(212,82,10,.08); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.1rem;
+    }
+    .about-feature-title { font-weight: 600; font-size: .95rem; color: var(--primary-dark); margin-bottom: 2px; }
+    .about-feature-text { font-size: .83rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* ── COUNTER BAR ── */
+    #zahlen {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      padding: 72px 0;
+      position: relative; overflow: hidden;
+    }
+    #zahlen::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .counter-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 48px; position: relative;
+    }
+    .counter-item { text-align: center; }
+    .counter-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      font-weight: 700; color: var(--white); line-height: 1;
+      display: block;
+    }
+    .counter-suffix { color: var(--accent-light); }
+    .counter-label {
+      font-size: .9rem; color: rgba(255,255,255,.65);
+      margin-top: 10px; font-weight: 500;
+    }
+    .counter-divider {
+      width: 40px; height: 3px; background: var(--accent);
+      margin: 14px auto 0; border-radius: 2px;
+    }
+
+    /* ── PROJEKTE ── */
+    #projekte { background: var(--white); }
+
+    .projects-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 48px; gap: 32px;
+    }
+
+    .projects-filter {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px; border-radius: 100px;
+      border: 1.5px solid var(--gray-200); background: var(--white);
+      font-size: 13px; font-weight: 500; color: var(--gray-600);
+      cursor: pointer; transition: var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary); border-color: var(--primary); color: var(--white);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 20px;
+    }
+    .project-card {
+      position: relative; border-radius: var(--radius-lg);
+      overflow: hidden; background: var(--gray-900);
+      cursor: pointer;
+    }
+    .project-card:first-child {
+      grid-column: span 2;
+    }
+    .project-card-img {
+      width: 100%; height: 280px; object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .project-card:first-child .project-card-img { height: 400px; }
+    .project-card:hover .project-card-img { transform: scale(1.08); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,34,56,.9) 0%, transparent 60%);
+      opacity: .7; transition: opacity .4s ease;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      transform: translateY(8px); transition: transform .4s ease;
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-year {
+      font-size: .75rem; font-weight: 600; color: var(--accent-light);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 4px;
+    }
+    .project-location { font-size: .83rem; color: rgba(255,255,255,.65); }
+
+    /* ── TEAM ── */
+    #team { background: var(--gray-50); }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .team-card {
+      text-align: center; background: var(--white);
+      border-radius: var(--radius-lg); padding: 32px 24px;
+      border: 1px solid var(--gray-200); transition: var(--transition);
+    }
+    .team-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px); box-shadow: var(--shadow-md);
+    }
+    .team-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--white);
+    }
+    .team-name { font-weight: 700; color: var(--primary-dark); margin-bottom: 4px; }
+    .team-role { font-size: .83rem; color: var(--accent); font-weight: 500; margin-bottom: 8px; }
+    .team-dept { font-size: .78rem; color: var(--gray-600); }
+
+    /* ── AUSBILDUNG ── */
+    #ausbildung {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    #ausbildung::after {
+      content: ''; position: absolute; right: -100px; top: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(212,82,10,.12);
+    }
+    .ausbildung-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .ausbildung-content .heading-xl { color: var(--white); }
+    .ausbildung-content .text-lead { color: rgba(255,255,255,.75); max-width: 100%; }
+
+    .ausbildung-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .ausbildung-card {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px); border-radius: var(--radius);
+      padding: 20px 24px; display: flex; gap: 16px; align-items: center;
+      transition: var(--transition);
+    }
+    .ausbildung-card:hover {
+      background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.24);
+      transform: translateX(6px);
+    }
+    .ausbildung-card-icon {
+      font-size: 1.8rem; flex-shrink: 0;
+    }
+    .ausbildung-card-title { font-weight: 700; color: var(--white); margin-bottom: 2px; }
+    .ausbildung-card-text { font-size: .83rem; color: rgba(255,255,255,.65); }
+
+    .ausbildung-img-wrap {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .ausbildung-img-wrap img {
+      width: 100%; height: 480px; object-fit: cover;
+    }
+    .ausbildung-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,34,56,.6) 0%, transparent 50%);
+    }
+    .ausbildung-img-tag {
+      position: absolute; bottom: 24px; left: 24px;
+      background: var(--accent); color: var(--white);
+      padding: 10px 20px; border-radius: 100px;
+      font-size: .83rem; font-weight: 700;
+    }
+
+    /* ── JOBS ── */
+    #jobs { background: var(--white); }
+    .jobs-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px; margin-top: 48px;
+    }
+    .job-card {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg);
+      padding: 28px; transition: var(--transition);
+    }
+    .job-card:hover {
+      border-color: var(--primary); box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .job-tag {
+      display: inline-block; background: rgba(28,58,94,.08);
+      color: var(--primary); font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 4px; margin-bottom: 12px;
+    }
+    .job-title { font-weight: 700; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 8px; }
+    .job-desc { font-size: .88rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 20px; }
+    .job-meta { display: flex; gap: 16px; font-size: .78rem; color: var(--gray-400); }
+    .job-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ── CONTACT ── */
+    #kontakt { background: var(--gray-50); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 64px; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--primary); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.1rem;
+    }
+    .contact-item-label { font-size: .75rem; font-weight: 600; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-item-value { font-size: .95rem; color: var(--gray-800); font-weight: 500; line-height: 1.5; }
+    .contact-item-value a { color: inherit; text-decoration: none; transition: color .2s; }
+    .contact-item-value a:hover { color: var(--accent); }
+
+    .contact-form {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 40px; box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: .83rem; font-weight: 600; color: var(--gray-800); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px; border-radius: var(--radius);
+      border: 1.5px solid var(--gray-200); font-family: inherit;
+      font-size: .9rem; color: var(--gray-900); background: var(--white);
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(28,58,94,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .contact-map {
+      margin-top: 48px; border-radius: var(--radius-lg);
+      overflow: hidden; height: 320px; box-shadow: var(--shadow-md);
+    }
+    .contact-map iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,.65);
+      padding: 72px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand { }
+    .footer-logo { height: 52px; width: auto; margin-bottom: 20px; }
+    .footer-brand p { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.55); max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 24px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); text-decoration: none; font-size: .9rem;
+      transition: var(--transition);
+    }
+    .footer-social a:hover { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+    .footer-col h4 {
+      font-size: .83rem; font-weight: 700; color: var(--white);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      color: rgba(255,255,255,.55); text-decoration: none; font-size: .88rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--accent-light); }
+
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 32px; font-size: .8rem; color: rgba(255,255,255,.35);
+    }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: inherit; text-decoration: none; transition: color .2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ── BACK TO TOP ── */
+    #btt {
+      position: fixed; bottom: 32px; right: 32px; z-index: 500;
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--accent); color: var(--white);
+      border: none; cursor: pointer; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-md); opacity: 0; pointer-events: none;
+      transition: var(--transition);
+    }
+    #btt.show { opacity: 1; pointer-events: all; }
+    #btt:hover { background: var(--accent-light); transform: translateY(-3px); }
+
+    /* ── DIVIDERS ── */
+    .wave-divider { line-height: 0; }
+    .wave-divider svg { display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .hero-stat:nth-child(2) { border-right: none; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-title { font-size: 2rem; }
+      .services-intro { grid-template-columns: 1fr; gap: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-images { height: 360px; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: span 1; }
+      .ausbildung-grid { grid-template-columns: 1fr; }
+      .jobs-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .projects-header { flex-direction: column; align-items: flex-start; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.Logo%20-%20Meisterhaft_NuK_5_Sterne.jpg/picture-200"
+          alt="Nübel-Bau Logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Nübel-Bau GmbH</span>
+          <span class="nav-logo-sub">Meisterbetrieb seit 1970</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#unternehmen">Unternehmen</a></li>
+        <li><a href="#projekte">Projekte</a></li>
+        <li><a href="#ausbildung">Ausbildung</a></li>
+        <li><a href="#jobs">Jobs</a></li>
+      </ul>
+
+      <a href="#kontakt" class="btn btn-primary nav-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.13 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Kontakt
+      </a>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">×</button>
+  <a href="#leistungen" class="mobile-link">Leistungen</a>
+  <a href="#unternehmen" class="mobile-link">Unternehmen</a>
+  <a href="#projekte" class="mobile-link">Projekte</a>
+  <a href="#ausbildung" class="mobile-link">Ausbildung</a>
+  <a href="#jobs" class="mobile-link">Jobs</a>
+  <a href="#kontakt" class="mobile-link">Kontakt</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide active" style="background-image: url('https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600.jpg/picture-2600')"></div>
+    <div class="hero-slide" style="background-image: url('https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(1).jpg/picture-2600')"></div>
+    <div class="hero-slide" style="background-image: url('https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(2).jpg/picture-2600')"></div>
+    <div class="hero-slide" style="background-image: url('https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(3).jpg/picture-2600')"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Meisterbetrieb · 5 Sterne · Nordschwarzwald
+      </div>
+      <h1 class="hero-title">
+        Ihr Fachbetrieb für<br/>
+        <span>Hoch- und Tiefbau</span><br/>
+        im Nordschwarzwald
+      </h1>
+      <p class="hero-desc">
+        Seit 1970 realisieren wir mit Leidenschaft und Präzision Bauprojekte jeder Größenordnung –
+        von Einfamilienhäusern bis hin zu komplexen Gewerbeprojekten. Drei Generationen Nübel, ein Versprechen: Qualität.
+      </p>
+      <div class="hero-actions">
+        <a href="#leistungen" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Unsere Leistungen
+        </a>
+        <a href="#kontakt" class="btn btn-outline">
+          Angebot anfragen
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" data-idx="0"></button>
+    <button class="hero-dot" data-idx="1"></button>
+    <button class="hero-dot" data-idx="2"></button>
+    <button class="hero-dot" data-idx="3"></button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stats-inner container">
+      <div class="hero-stat">
+        <div class="hero-stat-num">55+</div>
+        <div class="hero-stat-label">Jahre Erfahrung</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Generationen Meister</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">Spezialisierte Teams</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Kundenzufriedenheit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEISTUNGEN ── -->
+<section id="leistungen" class="section">
+  <div class="container">
+    <div class="services-intro">
+      <div class="reveal">
+        <div class="label">Was wir bauen</div>
+        <h2 class="heading-xl">Unsere Leistungen – kompetent aus einer Hand</h2>
+      </div>
+      <div class="reveal">
+        <p class="text-lead">
+          Von der ersten Idee bis zur Schlüsselübergabe bieten wir das gesamte Spektrum der Bauleistungen.
+          Verlässlich, termingerecht und mit höchstem Qualitätsanspruch.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal" style="transition-delay:.05s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🏠</span>
+        </div>
+        <div class="service-title">Wohnungsbau</div>
+        <div class="service-desc">Einfamilienhäuser, Mehrfamilienhäuser und Wohnanlagen – kompetent geplant und ausgeführt.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.1s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🏭</span>
+        </div>
+        <div class="service-title">Gewerbebau</div>
+        <div class="service-desc">Produktionshallen, Lagerhäuser, Bürogebäude und Verwaltungsbauten für Ihren Erfolg.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.15s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">⛏️</span>
+        </div>
+        <div class="service-title">Tief- und Erdbau</div>
+        <div class="service-desc">Fundamente, Kanäle, Erdarbeiten und Infrastrukturprojekte – sicher und professionell.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🏛️</span>
+        </div>
+        <div class="service-title">Denkmalschutz</div>
+        <div class="service-desc">Behutsame Sanierung und Restaurierung denkmalgeschützter Gebäude mit Sachverstand.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.25s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🌿</span>
+        </div>
+        <div class="service-title">Außenanlagen</div>
+        <div class="service-desc">Pflasterarbeiten, Wege, Parkplätze und gestaltete Außenbereiche nach Ihren Wünschen.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.3s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🔧</span>
+        </div>
+        <div class="service-title">Reparaturen & Umbau</div>
+        <div class="service-desc">Maurer-Express – schnelle Hilfe bei Schäden, Umbauten und Modernisierungen aller Art.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.35s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🚰</span>
+        </div>
+        <div class="service-title">Rückstauklappenservice</div>
+        <div class="service-desc">Einbau, Wartung und Prüfung von Rückstaklappen – zuverlässiger Schutz für Ihr Gebäude.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.4s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">♻️</span>
+        </div>
+        <div class="service-title">Betonrecycling</div>
+        <div class="service-desc">Umweltgerechte Verwertung von Betonbruch – nachhaltig und ressourcenschonend.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.45s">
+        <div class="service-icon-wrap">
+          <span class="service-icon">🏗️</span>
+        </div>
+        <div class="service-title">Seniorenzentren & Pflege</div>
+        <div class="service-desc">Spezialisiert auf anspruchsvolle Sozial- und Pflegeeinrichtungen mit höchsten Standards.</div>
+        <span class="service-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COUNTER BAR ── -->
+<section id="zahlen">
+  <div class="container">
+    <div class="counter-grid">
+      <div class="counter-item reveal">
+        <span class="counter-num" data-target="55">0</span><span class="counter-suffix">+</span>
+        <div class="counter-label">Jahre Firmengeschichte</div>
+        <div class="counter-divider"></div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:.1s">
+        <span class="counter-num" data-target="100">0</span><span class="counter-suffix">+</span>
+        <div class="counter-label">Abgeschlossene Projekte</div>
+        <div class="counter-divider"></div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:.2s">
+        <span class="counter-num" data-target="7">0</span>
+        <div class="counter-label">Spezialisierte Bautrupps</div>
+        <div class="counter-divider"></div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:.3s">
+        <span class="counter-num" data-target="3">0</span>
+        <div class="counter-label">Generationen Meisterbetrieb</div>
+        <div class="counter-divider"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── UNTERNEHMEN ── -->
+<section id="unternehmen" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images reveal-scale">
+        <img
+          class="about-img-main"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(4).jpg/picture-2600"
+          alt="Nübel-Bau Baustelle"
+          onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'"
+        />
+        <img
+          class="about-img-secondary"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(5).jpg/picture-2600"
+          alt="Nübel-Bau Team"
+          onerror="this.src='https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=600&q=80'"
+        />
+        <div class="about-badge">
+          <div class="about-badge-num">1970</div>
+          <div class="about-badge-text">Gegründet</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label reveal">Über uns</div>
+        <h2 class="heading-xl reveal">Drei Generationen. Ein Name. Eine Leidenschaft.</h2>
+        <p class="text-lead reveal">
+          Was 1970 als kleiner Handwerksbetrieb begann, ist heute ein führendes Bauunternehmen im Nordschwarzwald.
+          Mit den Meistern Gerhard, Volker und Peter Nübel steht drei Generationen lang Qualität und
+          Verlässlichkeit für den Namen unseres Unternehmens.
+        </p>
+        <p class="text-lead reveal" style="margin-top:16px">
+          Unsere Mitarbeiter sind unser größtes Kapital. Viele von ihnen begleiten uns seit ihrer Ausbildung
+          und kennen unsere Werte: Qualität als Ziel, Zuverlässigkeit als Versprechen.
+        </p>
+
+        <div class="about-features">
+          <div class="about-feature reveal" style="transition-delay:.1s">
+            <div class="about-feature-icon">🏅</div>
+            <div>
+              <div class="about-feature-title">Zertifizierter Meisterbetrieb – 5 Sterne</div>
+              <div class="about-feature-text">Ausgezeichnet mit dem Meisterhaft-Qualitätssiegel als verlässlicher Fachbetrieb</div>
+            </div>
+          </div>
+          <div class="about-feature reveal" style="transition-delay:.15s">
+            <div class="about-feature-icon">👥</div>
+            <div>
+              <div class="about-feature-title">7 spezialisierte Teams</div>
+              <div class="about-feature-text">4 Hochbau-, 3 Tiefbauteams sowie Maurer-Express für schnelle Hilfe</div>
+            </div>
+          </div>
+          <div class="about-feature reveal" style="transition-delay:.2s">
+            <div class="about-feature-icon">📍</div>
+            <div>
+              <div class="about-feature-title">Regional verwurzelt</div>
+              <div class="about-feature-text">In Pfalzgrafenweiler zuhause – für den gesamten Nordschwarzwald tätig</div>
+            </div>
+          </div>
+          <div class="about-feature reveal" style="transition-delay:.25s">
+            <div class="about-feature-icon">📋</div>
+            <div>
+              <div class="about-feature-title">Zertifikate & Nachweise</div>
+              <div class="about-feature-text">Alle relevanten Bescheinigungen, Zertifikate und Dokumente auf Anfrage verfügbar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJEKTE ── -->
+<section id="projekte" class="section" style="background: var(--gray-50)">
+  <div class="container">
+    <div class="projects-header">
+      <div>
+        <div class="label reveal">Referenzen</div>
+        <h2 class="heading-xl reveal">Ausgewählte Projekte</h2>
+      </div>
+      <a href="#kontakt" class="btn btn-dark reveal">Alle Projekte anfragen</a>
+    </div>
+
+    <div class="projects-filter reveal">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="wohnbau">Wohnbau</button>
+      <button class="filter-btn" data-filter="gewerbe">Gewerbe</button>
+      <button class="filter-btn" data-filter="sozial">Soziales</button>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal" data-type="sozial">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(6).jpg/picture-2600"
+          alt="Neubau Seniorenzentrum Baiersbronn"
+          onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2021</div>
+          <div class="project-name">Neubau Seniorenzentrum</div>
+          <div class="project-location">📍 Baiersbronn</div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s" data-type="gewerbe">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(7).jpg/picture-2600"
+          alt="Neubau Lagerhalle Freudenstadt"
+          onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2024</div>
+          <div class="project-name">Neubau Lagerhalle & Verwaltung</div>
+          <div class="project-location">📍 Freudenstadt</div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.15s" data-type="wohnbau">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(8).jpg/picture-2600"
+          alt="Neubau 3 Mehrfamilienhäuser Pfalzgrafenweiler"
+          onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2025–2026</div>
+          <div class="project-name">3 Mehrfamilienhäuser</div>
+          <div class="project-location">📍 Pfalzgrafenweiler</div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.2s" data-type="sozial">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(1).jpg/picture-2600"
+          alt="Pflegezentrum Nagold"
+          onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2021</div>
+          <div class="project-name">Neubau Pflegezentrum</div>
+          <div class="project-location">📍 Nagold</div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.25s" data-type="wohnbau">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(2).jpg/picture-2600"
+          alt="Umbau Bauernhaus Eutingen"
+          onerror="this.src='https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2023</div>
+          <div class="project-name">Umbau denkmalgesch. Bauernhaus</div>
+          <div class="project-location">📍 Eutingen-Göttelfingen</div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.3s" data-type="wohnbau">
+        <img
+          class="project-card-img"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(3).jpg/picture-2600"
+          alt="Mehrfamilienhaus Freudenstadt"
+          onerror="this.src='https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=800&q=80'"
+        />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-year">2025</div>
+          <div class="project-name">Neubau Mehrfamilienhaus</div>
+          <div class="project-location">📍 Freudenstadt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team" class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:600px; margin:0 auto 0">
+      <div class="label reveal" style="justify-content:center">Unser Team</div>
+      <h2 class="heading-xl reveal">Die Köpfe hinter den Projekten</h2>
+      <p class="text-lead reveal" style="margin:0 auto">
+        Erfahrene Poliere und engagierte Fachkräfte sorgen tagtäglich dafür, dass jedes Projekt termingerecht und in höchster Qualität fertiggestellt wird.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal" style="transition-delay:.05s">
+        <div class="team-avatar">GN</div>
+        <div class="team-name">Gerhard Nübel</div>
+        <div class="team-role">Meister</div>
+        <div class="team-dept">Gründergeneration</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.1s">
+        <div class="team-avatar">VN</div>
+        <div class="team-name">Volker Nübel</div>
+        <div class="team-role">Meister</div>
+        <div class="team-dept">Geschäftsführung</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.15s">
+        <div class="team-avatar">PN</div>
+        <div class="team-name">Peter Nübel</div>
+        <div class="team-role">Juniorchef & Meister</div>
+        <div class="team-dept">Hochbau · Polier</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.2s">
+        <div class="team-avatar">EG</div>
+        <div class="team-name">Eugen Gerter</div>
+        <div class="team-role">Polier</div>
+        <div class="team-dept">Hochbau-Team 1</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.25s">
+        <div class="team-avatar">BJ</div>
+        <div class="team-name">Benjamin Jehle</div>
+        <div class="team-role">Polier</div>
+        <div class="team-dept">Hochbau-Team 2</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.3s">
+        <div class="team-avatar">RA</div>
+        <div class="team-name">Rogerio Antunes</div>
+        <div class="team-role">Polier</div>
+        <div class="team-dept">Hochbau-Team 3</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.35s">
+        <div class="team-avatar">ST</div>
+        <div class="team-name">Stefan Theurer</div>
+        <div class="team-role">Polier</div>
+        <div class="team-dept">Tiefbau-Team 1</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.4s">
+        <div class="team-avatar">SK</div>
+        <div class="team-name">Sandro Kappler</div>
+        <div class="team-role">Polier</div>
+        <div class="team-dept">Tiefbau-Team 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUSBILDUNG ── -->
+<section id="ausbildung" class="section">
+  <div class="container">
+    <div class="ausbildung-grid">
+      <div class="ausbildung-content">
+        <div class="label" style="color:rgba(255,165,100,.9)">Ausbildung</div>
+        <h2 class="heading-xl reveal">Deine Zukunft beginnt hier</h2>
+        <p class="text-lead reveal">
+          Wir bilden jährlich 2–3 Auszubildende aus und integrieren sie vom ersten Tag in unsere Teams.
+          Von der Fundamentbodenplatte bis zur Kaminplatte lernst du alles aus erster Hand.
+        </p>
+
+        <div class="ausbildung-cards">
+          <div class="ausbildung-card reveal" style="transition-delay:.1s">
+            <div class="ausbildung-card-icon">🧱</div>
+            <div>
+              <div class="ausbildung-card-title">Maurer / Maurerin</div>
+              <div class="ausbildung-card-text">Klassische Berufsausbildung mit Option auf Fachhochschulreife oder Bachelor in Bauingenieurwesen</div>
+            </div>
+          </div>
+          <div class="ausbildung-card reveal" style="transition-delay:.15s">
+            <div class="ausbildung-card-icon">🚜</div>
+            <div>
+              <div class="ausbildung-card-title">Baugeräteführer / -führerin</div>
+              <div class="ausbildung-card-text">Bedienung moderner Baumaschinen und Geräte – technisch und praxisnah</div>
+            </div>
+          </div>
+          <div class="ausbildung-card reveal" style="transition-delay:.2s">
+            <div class="ausbildung-card-icon">🎓</div>
+            <div>
+              <div class="ausbildung-card-title">Bauingenieur Plus (mit Abitur)</div>
+              <div class="ausbildung-card-text">Ausbildung + Bachelorstudium Bauingenieurwesen kombiniert</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px" class="reveal">
+          <a href="mailto:info@nuebel-bau.de" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:white">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            Jetzt bewerben: info@nuebel-bau.de
+          </a>
+        </div>
+      </div>
+
+      <div class="ausbildung-img-wrap reveal-right">
+        <img
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.picture-2600%20(5).jpg/picture-2600"
+          alt="Ausbildung bei Nübel-Bau"
+          onerror="this.src='https://images.unsplash.com/photo-1581092335397-9fa73b3e5e8c?w=800&q=80'"
+        />
+        <div class="ausbildung-img-overlay"></div>
+        <div class="ausbildung-img-tag">🏆 Auszeichnung: Lehrling des Monats IHK Reutlingen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JOBS ── -->
+<section id="jobs" class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:600px; margin:0 auto 0">
+      <div class="label reveal" style="justify-content:center">Karriere</div>
+      <h2 class="heading-xl reveal">Stellenangebote</h2>
+      <p class="text-lead reveal" style="margin:0 auto">
+        Werden Sie Teil unseres Teams. Wir suchen engagierte Fachkräfte, die mit uns gemeinsam wachsen möchten.
+      </p>
+    </div>
+
+    <div class="jobs-grid">
+      <div class="job-card reveal" style="transition-delay:.05s">
+        <span class="job-tag">Vollzeit</span>
+        <div class="job-title">Maurer / Maurermeister (m/w/d)</div>
+        <div class="job-desc">Sie führen selbstständig Mauerwerks-, Beton- und Schalungsarbeiten durch und leiten ggf. kleinere Kolonnen. Erfahrung im Hochbau vorausgesetzt.</div>
+        <div class="job-meta">
+          <span>📍 Pfalzgrafenweiler</span>
+          <span>🕐 Vollzeit</span>
+        </div>
+      </div>
+      <div class="job-card reveal" style="transition-delay:.1s">
+        <span class="job-tag">Vollzeit</span>
+        <div class="job-title">Baugeräteführer (m/w/d)</div>
+        <div class="job-desc">Bedienung und Pflege von Erdbaugeräten, Baggern und Raupen auf unseren Tiefbaubaustellen. Führerschein Klasse C erforderlich.</div>
+        <div class="job-meta">
+          <span>📍 Pfalzgrafenweiler</span>
+          <span>🕐 Vollzeit</span>
+        </div>
+      </div>
+      <div class="job-card reveal" style="transition-delay:.15s">
+        <span class="job-tag">Vollzeit</span>
+        <div class="job-title">Polier Hochbau (m/w/d)</div>
+        <div class="job-desc">Eigenverantwortliche Führung eines Hochbautrupps. Koordination von Materialien, Personal und Abläufen auf der Baustelle.</div>
+        <div class="job-meta">
+          <span>📍 Nordschwarzwald</span>
+          <span>🕐 Vollzeit</span>
+        </div>
+      </div>
+      <div class="job-card reveal" style="transition-delay:.2s">
+        <span class="job-tag">Vollzeit</span>
+        <div class="job-title">Facharbeiter Tiefbau (m/w/d)</div>
+        <div class="job-desc">Verlegung von Leitungen, Kanalbau, Pflasterarbeiten und Fundamentarbeiten. Teamfähigkeit und Zuverlässigkeit erwünscht.</div>
+        <div class="job-meta">
+          <span>📍 Pfalzgrafenweiler</span>
+          <span>🕐 Vollzeit</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:40px" class="reveal">
+      <p style="color:var(--gray-600); margin-bottom:16px">Kein passendes Angebot? Wir freuen uns auch über Initiativbewerbungen!</p>
+      <a href="mailto:info@nuebel-bau.de" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Initiativbewerbung senden
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ── -->
+<section id="kontakt" class="section">
+  <div class="container">
+    <div style="max-width:600px; margin-bottom:56px">
+      <div class="label reveal">Kontakt</div>
+      <h2 class="heading-xl reveal">Sprechen wir über Ihr Projekt</h2>
+      <p class="text-lead reveal">
+        Egal ob Neubau, Umbau oder Reparatur – wir beraten Sie gerne und erstellen Ihnen ein unverbindliches Angebot.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item reveal" style="transition-delay:.05s">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Anschrift</div>
+            <div class="contact-item-value">
+              Nübel-Bau GmbH<br/>
+              Zeppelinstraße 6<br/>
+              72285 Pfalzgrafenweiler
+            </div>
+          </div>
+        </div>
+        <div class="contact-item reveal" style="transition-delay:.1s">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Telefon</div>
+            <div class="contact-item-value">
+              <a href="tel:+4974458580000">+49 7445 858000</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item reveal" style="transition-delay:.15s">
+          <div class="contact-icon">📠</div>
+          <div>
+            <div class="contact-item-label">Fax</div>
+            <div class="contact-item-value">+49 7445 8580020</div>
+          </div>
+        </div>
+        <div class="contact-item reveal" style="transition-delay:.2s">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">E-Mail</div>
+            <div class="contact-item-value">
+              <a href="mailto:info@nuebel-bau.de">info@nuebel-bau.de</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map reveal" style="transition-delay:.25s">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2639.5!2d8.6333!3d48.4528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sZeppelinstra%C3%9Fe+6%2C+72285+Pfalzgrafenweiler!5e0!3m2!1sde!2sde!4v1"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Standort Nübel-Bau GmbH"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="contact-form reveal-right">
+        <h3 style="font-size:1.3rem; font-weight:700; color:var(--primary-dark); margin-bottom:24px">Angebotsanfrage</h3>
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Vorname *</label>
+              <input type="text" id="fname" name="fname" placeholder="Max" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Nachname *</label>
+              <input type="text" id="lname" name="lname" placeholder="Mustermann" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" placeholder="+49 7445 ..." />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Gewünschte Leistung</label>
+            <select id="service" name="service">
+              <option value="">Bitte wählen...</option>
+              <option>Wohnungsbau</option>
+              <option>Gewerbebau</option>
+              <option>Tief- und Erdbau</option>
+              <option>Außenanlagen & Pflaster</option>
+              <option>Denkmalgeschütztes Gebäude</option>
+              <option>Reparaturen & Umbau</option>
+              <option>Rückstauklappenservice</option>
+              <option>Betonrecycling</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Ihr Anliegen *</label>
+            <textarea id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Anfrage absenden
+          </button>
+          <p id="formSuccess" style="display:none; color:green; text-align:center; margin-top:16px; font-weight:600">
+            ✅ Vielen Dank! Wir melden uns in Kürze.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img
+          class="footer-logo"
+          src="https://www.nuebel-bau.de/.cm4all/uproc.php/0/start/.Logo%20-%20Meisterhaft_NuK_5_Sterne.jpg/picture-200"
+          alt="Nübel-Bau Logo"
+          onerror="this.style.display='none'"
+        />
+        <p>
+          Ihr zuverlässiger Fachbetrieb für Hoch- und Tiefbau im Nordschwarzwald.
+          Seit 1970 stehen wir für Qualität, Verlässlichkeit und drei Generationen Meisterhandwerk.
+        </p>
+        <div class="footer-social">
+          <a href="mailto:info@nuebel-bau.de" title="E-Mail">✉</a>
+          <a href="tel:+4974458580000" title="Telefon">📞</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul class="footer-links">
+          <li><a href="#leistungen">Wohnungsbau</a></li>
+          <li><a href="#leistungen">Gewerbebau</a></li>
+          <li><a href="#leistungen">Tief- &amp; Erdbau</a></li>
+          <li><a href="#leistungen">Außenanlagen</a></li>
+          <li><a href="#leistungen">Denkmalschutz</a></li>
+          <li><a href="#leistungen">Betonrecycling</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul class="footer-links">
+          <li><a href="#unternehmen">Über uns</a></li>
+          <li><a href="#projekte">Projekte</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#ausbildung">Ausbildung</a></li>
+          <li><a href="#jobs">Stellenangebote</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+4974458580000">+49 7445 858000</a></li>
+          <li><a href="mailto:info@nuebel-bau.de">info@nuebel-bau.de</a></li>
+          <li>Zeppelinstraße 6</li>
+          <li>72285 Pfalzgrafenweiler</li>
+          <li style="margin-top:12px"><a href="#kontakt">Angebot anfragen →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Nübel-Bau GmbH. Alle Rechte vorbehalten.</span>
+      <div class="footer-legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── BACK TO TOP ── -->
+<button id="btt" aria-label="Nach oben scrollen">↑</button>
+
+<script>
+  // ── NAVBAR SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── BACK TO TOP ──
+  document.getElementById('btt').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── MOBILE MENU ──
+  const mobileMenu = document.getElementById('mobileMenu');
+  document.getElementById('hamburger').addEventListener('click', () => mobileMenu.classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── HERO SLIDER ──
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let current = 0, timer;
+
+  function goSlide(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function nextSlide() {
+    goSlide((current + 1) % slides.length);
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(nextSlide, 5000);
+  }
+
+  dots.forEach(d => {
+    d.addEventListener('click', () => {
+      goSlide(parseInt(d.dataset.idx));
+      startTimer();
+    });
+  });
+
+  startTimer();
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+    .forEach(el => observer.observe(el));
+
+  // ── COUNTER ANIMATION ──
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1600;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter-num[data-target]').forEach(el => counterObserver.observe(el));
+
+  // ── PROJECT FILTER ──
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        const matches = filter === 'all' || card.dataset.type === filter;
+        card.style.display = matches ? '' : 'none';
+      });
+    });
+  });
+
+  // ── FORM ──
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Wird gesendet...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.style.display = 'none';
+    }, 1000);
+  }
+
+  // ── SMOOTH ACTIVE NAV ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--accent-light)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
