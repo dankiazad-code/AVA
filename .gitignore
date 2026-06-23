@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Netlify
+.netlify/
+
+# Build output
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

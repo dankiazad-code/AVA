@@ -1,0 +1,12 @@
+{
+  "name": "Oest Gruppe",
+  "short_name": "Oest",
+  "description": "Oest Gruppe – Lubricants, Energies & Systems. Seit 1915 in Freudenstadt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#021F45",
+  "theme_color": "#034EA2",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

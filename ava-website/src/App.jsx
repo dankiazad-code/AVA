@@ -447,6 +447,159 @@ const PLANS = [
   },
 ];
 
+/* ── Portfolio / Referenzen ──
+   Tipp: `url` auf die jeweilige Live-Demo (z. B. Netlify-URL) setzen. */
+const PROJECTS = [
+  {
+    name: "Oest Gruppe",
+    category: "Industrie & Schmierstoffe",
+    location: "Freudenstadt",
+    desc: "Komplette Neugestaltung mit Download-Center, Live-Suche und eigenem E-Fuels-Bereich.",
+    url: "#",
+    initials: "OE",
+    gradient: "linear-gradient(135deg, #0b3d2e 0%, #0a6b54 100%)",
+    accent: "#1bbf8a",
+  },
+  {
+    name: "Fahrschule Heinzelmann",
+    category: "Fahrschule",
+    location: "Nordschwarzwald",
+    desc: "Moderne, mobil-optimierte Website mit Kursangebot, Online-Anmeldung und klarer Führung.",
+    url: "#",
+    initials: "FH",
+    gradient: "linear-gradient(135deg, #0a2a52 0%, #1769d6 100%)",
+    accent: "#2590ff",
+  },
+  {
+    name: "Nübel-Bau GmbH",
+    category: "Hoch- & Tiefbau",
+    location: "Nordschwarzwald",
+    desc: "Repräsentative Seite für den Meisterbetrieb seit 1970 – Leistungen, Referenzen & Kontakt.",
+    url: "#",
+    initials: "NB",
+    gradient: "linear-gradient(135deg, #0f2238 0%, #1c3a5e 100%)",
+    accent: "#d4520a",
+  },
+];
+
+function Portfolio({ innerRef }) {
+  return (
+    <section className="ava-section" id="referenzen">
+      <div className="ava-container">
+        <div ref={innerRef} className="ava-reveal" style={{ textAlign: "center" }}>
+          <p className="ava-eyebrow">Referenzen</p>
+          <h2 className="ava-h2">Echte Projekte.<br /><em>Echte Betriebe.</em></h2>
+          <p className="ava-body" style={{ margin: "0 auto", maxWidth: "560px" }}>
+            Eine Auswahl maßgeschneiderter Websites von AVA — von der Industrie bis zum Handwerk.
+          </p>
+        </div>
+
+        <div className="ava-portfolio__grid" style={{ marginTop: "4rem" }}>
+          {PROJECTS.map(p => (
+            <a key={p.name} href={p.url} target="_blank" rel="noreferrer" className="ava-portfolio__card">
+              <div className="ava-portfolio__preview" style={{ background: p.gradient }}>
+                <div className="ava-portfolio__chrome"><span /><span /><span /></div>
+                <div className="ava-portfolio__mock">
+                  <span className="ava-portfolio__mono" style={{ color: p.accent }}>{p.initials}</span>
+                  <span className="ava-portfolio__mock-bar" style={{ width: "62%" }} />
+                  <span className="ava-portfolio__mock-bar" style={{ width: "44%", opacity: 0.55 }} />
+                </div>
+              </div>
+              <div className="ava-portfolio__body">
+                <span className="ava-portfolio__tag" style={{ color: p.accent, borderColor: p.accent }}>{p.category}</span>
+                <h3 className="ava-portfolio__name">{p.name}</h3>
+                <p className="ava-portfolio__location">{p.location}</p>
+                <p className="ava-portfolio__desc">{p.desc}</p>
+                <span className="ava-portfolio__link">Live-Demo ansehen <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Contact Form (Netlify Forms) ── */
+function encodeForm(data) {
+  return Object.keys(data)
+    .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
+    .join("&");
+}
+
+function ContactForm() {
+  const [state, setState] = useState({ name: "", email: "", unternehmen: "", telefon: "", nachricht: "" });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [bot, setBot] = useState("");
+
+  function update(e) { setState(s => ({ ...s, [e.target.name]: e.target.value })); }
+
+  function submit(e) {
+    e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodeForm({ "form-name": "kontakt", "bot-field": bot, ...state }),
+    })
+      .then(res => { if (!res.ok) throw new Error(res.status); setStatus("success"); })
+      .catch(() => setStatus("error"));
+  }
+
+  if (status === "success") {
+    return (
+      <div className="ava-contact__success">
+        <span className="ava-contact__success-icon">✓</span>
+        <h3>Nachricht gesendet!</h3>
+        <p>Danke{state.name ? `, ${state.name}` : ""}. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form name="kontakt" className="ava-contact__form" onSubmit={submit} data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="kontakt" />
+      <p className="ava-form__hp" aria-hidden="true">
+        <label>Bitte nicht ausfüllen: <input name="bot-field" tabIndex={-1} autoComplete="off" value={bot} onChange={e => setBot(e.target.value)} /></label>
+      </p>
+      <div className="ava-form__row">
+        <div className="ava-form__group">
+          <label htmlFor="cf-name">Name *</label>
+          <input id="cf-name" name="name" required value={state.name} onChange={update} placeholder="Max Mustermann" />
+        </div>
+        <div className="ava-form__group">
+          <label htmlFor="cf-email">E-Mail *</label>
+          <input id="cf-email" type="email" name="email" required value={state.email} onChange={update} placeholder="max@ihr-betrieb.de" />
+        </div>
+      </div>
+      <div className="ava-form__row">
+        <div className="ava-form__group">
+          <label htmlFor="cf-unternehmen">Unternehmen</label>
+          <input id="cf-unternehmen" name="unternehmen" value={state.unternehmen} onChange={update} placeholder="Ihr Betrieb" />
+        </div>
+        <div className="ava-form__group">
+          <label htmlFor="cf-telefon">Telefon</label>
+          <input id="cf-telefon" type="tel" name="telefon" value={state.telefon} onChange={update} placeholder="+49 …" />
+        </div>
+      </div>
+      <div className="ava-form__group">
+        <label htmlFor="cf-nachricht">Nachricht *</label>
+        <textarea id="cf-nachricht" name="nachricht" rows={4} required value={state.nachricht} onChange={update} placeholder="Worum geht es? Erzählen Sie uns kurz von Ihrem Vorhaben." />
+      </div>
+      {status === "error" && (
+        <p className="ava-form__error">Etwas ist schiefgelaufen. Bitte erneut versuchen oder direkt an <a href="mailto:contact@ava-hq.com">contact@ava-hq.com</a> schreiben.</p>
+      )}
+      <button type="submit" className="ava-btn ava-btn--primary ava-btn--lg" disabled={status === "sending"}
+        style={{ width: "100%", justifyContent: "center" }}>
+        {status === "sending" ? "Wird gesendet…" : "Nachricht senden"}
+        {status !== "sending" && <span className="ava-btn__arrow">→</span>}
+      </button>
+      <p className="ava-form__note">Mit dem Absenden stimmen Sie unserer <a href="/datenschutz.html">Datenschutzerklärung</a> zu.</p>
+    </form>
+  );
+}
+
 /* ════════════════════════════════════════════
    MAIN APP
 ════════════════════════════════════════════ */
@@ -463,7 +616,7 @@ export default function App() {
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(),
         r4 = useReveal(), r5 = useReveal(), r6 = useReveal(),
         r7 = useReveal(), r8 = useReveal(), r9 = useReveal(),
-        r10 = useReveal(), r11 = useReveal();
+        r10 = useReveal(), r11 = useReveal(), rP = useReveal();
 
   return (
     <div className="app">
@@ -482,6 +635,7 @@ export default function App() {
             <li><a href="#services">Services</a></li>
             <li><a href="#pricing">Preise</a></li>
             <li><a href="#roi">ROI</a></li>
+            <li><a href="#referenzen">Referenzen</a></li>
             <li><a href="#contact">Kontakt</a></li>
           </ul>
           <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer" className="ava-btn ava-btn--nav">
@@ -493,7 +647,7 @@ export default function App() {
         </div>
         {menuOpen && (
           <div className="ava-nav__mobile">
-            {[["#why","Warum AVA"],["#services","Services"],["#pricing","Preise"],["#roi","ROI"],["#contact","Kontakt"]].map(([href, label]) => (
+            {[["#why","Warum AVA"],["#services","Services"],["#pricing","Preise"],["#roi","ROI"],["#referenzen","Referenzen"],["#contact","Kontakt"]].map(([href, label]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
             ))}
           </div>
@@ -838,6 +992,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* ── PORTFOLIO / REFERENZEN ── */}
+      <Portfolio innerRef={rP} />
+
       {/* ── FAQ ── */}
       <section className="ava-section">
         <div className="ava-container" style={{ maxWidth: "760px" }}>
@@ -876,9 +1033,10 @@ export default function App() {
                 <p style={{ fontSize: "0.75rem", color: "var(--gray-2)", marginBottom: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>Oder sprechen Sie jetzt mit AVA</p>
                 <VapiCallButton size="md" />
               </div>
-              <p style={{ marginTop: "1.5rem", fontSize: "0.85rem", color: "var(--gray-2)" }}>
-                ↗ Wählen Sie rechts direkt Ihren Wunschtermin aus.
-              </p>
+              <div className="ava-contact__form-wrap">
+                <p className="ava-contact__form-label">Oder schreiben Sie uns direkt</p>
+                <ContactForm />
+              </div>
             </div>
             <div className="ava-contact__calendly">
               <Suspense fallback={<div style={{ height: 660, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-2)" }}>Lädt…</div>}>

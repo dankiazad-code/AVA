@@ -1702,6 +1702,138 @@ input, textarea, select { font: inherit; }
   .ava-container { padding-inline: 1.25rem; }
 }
 
+/* ─────────────────────────────────────────────
+   PORTFOLIO / REFERENZEN
+───────────────────────────────────────────── */
+.ava-portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.ava-portfolio__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s var(--ease-out), border-color 0.3s, box-shadow 0.4s var(--ease-out);
+}
+.ava-portfolio__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-blue);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.ava-portfolio__preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+.ava-portfolio__chrome {
+  display: flex;
+  gap: 6px;
+  margin-bottom: auto;
+}
+.ava-portfolio__chrome span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+}
+.ava-portfolio__mock {
+  position: absolute;
+  inset: 2.75rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+.ava-portfolio__mono {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: auto;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+.ava-portfolio__mock-bar {
+  height: 9px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.7);
+}
+.ava-portfolio__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+.ava-portfolio__tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.9;
+}
+.ava-portfolio__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.ava-portfolio__location {
+  font-size: 0.8rem;
+  color: var(--gray-2);
+  margin-top: -0.25rem;
+}
+.ava-portfolio__desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--gray-1);
+}
+.ava-portfolio__link {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--blue-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.ava-portfolio__card:hover .ava-portfolio__link span { transform: translateX(4px); }
+.ava-portfolio__link span { transition: transform 0.3s var(--ease-spring); }
+
+/* ── Contact form: label, honeypot, error ── */
+.ava-contact__form-label {
+  font-size: 0.75rem;
+  color: var(--gray-2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
+}
+.ava-form__hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+.ava-form__error {
+  font-size: 0.85rem;
+  color: #ff6b6b;
+  background: rgba(255,107,107,0.08);
+  border: 1px solid rgba(255,107,107,0.25);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+}
+.ava-form__error a { color: inherit; text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .ava-portfolio__grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

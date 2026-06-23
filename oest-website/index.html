@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#034EA2" />
+
+  <title>Oest Gruppe – Lubricants, Energies & Systems | seit 1915 in Freudenstadt</title>
+  <meta name="description" content="Die Oest Gruppe entwickelt seit 1915 maßgeschneiderte Schmierstoffe, zukunftsfähige Energie- & Mobilitätslösungen und führende Klebstofftechnik. Familienunternehmen aus Freudenstadt im Schwarzwald." />
+  <link rel="canonical" href="https://www.oest.de/" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="Oest Gruppe" />
+  <meta property="og:title" content="Oest Gruppe – Lubricants, Energies & Systems" />
+  <meta property="og:description" content="Seit 1915: maßgeschneiderte Schmierstoffe, Energie & Mobilität von morgen und Technologieführerschaft in der Klebstofftechnik." />
+  <meta property="og:url" content="https://www.oest.de/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Structured data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Oest Gruppe",
+    "legalName": "OEST LUBRICANTS GmbH & Co. KG",
+    "url": "https://www.oest.de/",
+    "logo": "https://www.oest.de/favicon.svg",
+    "foundingDate": "1915",
+    "founder": { "@type": "Person", "name": "Johann Georg Oest" },
+    "email": "info@oest.de",
+    "telephone": "+49 7441 5390",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Georg-Oest-Straße 4",
+      "postalCode": "72250",
+      "addressLocality": "Freudenstadt",
+      "addressCountry": "DE"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/oest-gruppe/",
+      "https://www.facebook.com/oestgruppe",
+      "https://www.youtube.com/oestgruppe",
+      "https://www.instagram.com/oestgruppe/"
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #021F45;   /* tiefes Marken-Blauschwarz */
+      --navy-700:    #023D80;   /* mittleres Marken-Blau */
+      --navy-600:    #034EA2;   /* offizielles Oest-Blau */
+      --blue:        #034EA2;   /* offizielles Oest-Blau (Primär) */
+      --blue-light:  #4E97DC;   /* helles Blau für Akzente auf Dunkel */
+      --red:         #ED1C24;   /* offizielles Oest-Rot (Akzent) */
+      --blue-50:     #EAF2FB;   /* helle Blau-Tönung */
+      --red-50:      #FDECEC;   /* helle Rot-Tönung */
+      --ink:         #11151B;
+      --slate-700:   #3A4756;
+      --slate-500:   #5C6B7A;
+      --slate-300:   #AEB9C4;
+      --line:        #E3E8EE;
+      --gray-50:     #F6F8FA;
+      --gray-100:    #EEF2F6;
+      --white:       #FFFFFF;
+      --shadow-sm:   0 2px 8px rgba(8,30,51,.07);
+      --shadow-md:   0 12px 36px rgba(8,30,51,.12);
+      --shadow-lg:   0 24px 64px rgba(8,30,51,.18);
+      --radius:      12px;
+      --radius-lg:   20px;
+      --maxw:        1180px;
+      --ease:        cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Sora', system-ui, sans-serif; line-height: 1.15; color: var(--navy); font-weight: 700; }
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    ::selection { background: var(--blue-light); color: #fff; }
+
+    /* ── Accessibility ── */
+    .skip-link {
+      position: absolute; left: 16px; top: -60px; z-index: 2000;
+      background: var(--navy); color: #fff; padding: 12px 20px;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      transition: top .2s var(--ease);
+    }
+    .skip-link:focus { top: 16px; }
+    :focus-visible { outline: 3px solid var(--blue-light); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Layout helpers ── */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .section { padding: clamp(64px, 9vw, 120px) 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 18px;
+    }
+    .eyebrow::before { content: ''; width: 30px; height: 2px; background: var(--blue); }
+    .h-xl { font-size: clamp(2rem, 5.2vw, 3.4rem); font-weight: 800; letter-spacing: -.02em; }
+    .h-lg { font-size: clamp(1.6rem, 3.6vw, 2.5rem); font-weight: 700; letter-spacing: -.01em; }
+    .lead { font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: var(--slate-500); max-width: 60ch; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 26px; border-radius: 10px;
+      font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: 2px solid transparent;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--navy-700); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(3,78,162,.34); }
+    .btn-ghost { background: transparent; color: var(--blue); border-color: var(--line); }
+    .btn-ghost:hover { background: var(--blue-50); border-color: var(--blue); }
+    .btn-dark { background: var(--navy); color: #fff; }
+    .btn-dark:hover { background: var(--navy-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ── Reveal on scroll ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── NAV ── */
+    header.nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 1000;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .3s var(--ease);
+    }
+    header.nav.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 0; }
+
+    .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
+    .brand .logo-img { width: 46px; height: 46px; flex-shrink: 0; }
+    .brand-name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: .02em; color: var(--navy); }
+    .brand-sub  { display: block; font-size: .68rem; font-weight: 500; letter-spacing: .22em; color: var(--slate-500); text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a {
+      padding: 9px 14px; border-radius: 8px; text-decoration: none;
+      font-size: 14.5px; font-weight: 500; color: var(--slate-700);
+      transition: background .2s var(--ease), color .2s var(--ease);
+    }
+    .nav-links a:hover { background: var(--gray-100); color: var(--navy); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 10px; }
+    .burger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s var(--ease); }
+
+    /* mobile menu */
+    .mobile { position: fixed; inset: 0; z-index: 1100; background: var(--white); display: none; flex-direction: column; padding: 28px 24px; }
+    .mobile.open { display: flex; animation: fadeIn .25s var(--ease); }
+    .mobile-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
+    .mobile-close { background: none; border: 0; color: var(--navy); font-size: 2rem; line-height: 1; cursor: pointer; }
+    .mobile nav { display: flex; flex-direction: column; gap: 6px; }
+    .mobile nav a { color: var(--navy); text-decoration: none; font-family: 'Sora',sans-serif; font-size: 1.4rem; font-weight: 600; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .mobile nav a:hover { color: var(--blue); }
+    .mobile .btn { margin-top: 28px; justify-content: center; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; min-height: 100svh; display: flex; align-items: center;
+      padding: 150px 0 60px;
+      background:
+        radial-gradient(1100px 620px at 88% -12%, rgba(78,151,220,.14), transparent 60%),
+        radial-gradient(820px 520px at -6% 112%, rgba(237,28,36,.07), transparent 55%),
+        var(--white);
+      overflow: hidden;
+    }
+    #hero::after {
+      content: ''; position: absolute; inset: 0; opacity: 1; pointer-events: none;
+      background-image: linear-gradient(rgba(3,78,162,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(3,78,162,.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(75% 75% at 50% 35%, #000 30%, transparent 100%);
+    }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--blue-50); border: 1px solid rgba(3,78,162,.18);
+      color: var(--blue); border-radius: 100px; padding: 8px 18px;
+      font-size: 13px; font-weight: 600; letter-spacing: .06em;
+      margin-bottom: 26px; animation: fadeIn .8s var(--ease) .1s both;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 rgba(237,28,36,.5); animation: ping 2.4s infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(237,28,36,.5);} 70%{ box-shadow: 0 0 0 12px rgba(237,28,36,0);} 100%{ box-shadow:0 0 0 0 rgba(237,28,36,0);} }
+
+    .hero h1 { color: var(--navy); font-size: clamp(2.4rem, 6vw, 4.1rem); font-weight: 800; letter-spacing: -.025em; margin-bottom: 22px; animation: rise .9s var(--ease) .2s both; }
+    .hero h1 .grad { background: linear-gradient(100deg, var(--blue), var(--red)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p.sub { color: var(--slate-500); font-size: clamp(1.05rem,1.7vw,1.22rem); max-width: 54ch; margin-bottom: 34px; animation: rise .9s var(--ease) .35s both; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: rise .9s var(--ease) .5s both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(28px);} to { opacity: 1; transform: none; } }
+
+    /* hero card cluster */
+    .hero-cards { position: relative; display: grid; gap: 16px; animation: fadeIn 1s var(--ease) .5s both; }
+    .hcard {
+      background: var(--white); border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm); border-radius: var(--radius); padding: 22px;
+      display: flex; gap: 16px; align-items: flex-start; color: var(--ink);
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+    }
+    .hcard:hover { transform: translateX(6px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .hcard .ic { width: 46px; height: 46px; flex-shrink: 0; border-radius: 11px; display: grid; place-items: center; background: var(--blue-50); }
+    .hcard .ic svg { width: 24px; height: 24px; stroke: var(--blue); }
+    .hcard h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 3px; }
+    .hcard p { font-size: .9rem; color: var(--slate-500); margin: 0; }
+
+    /* stat strip */
+    .stats { position: relative; z-index: 2; border-top: 1px solid var(--line); margin-top: 56px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 30px 18px; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat .num { font-family: 'Sora',sans-serif; font-weight: 800; font-size: clamp(1.7rem,3vw,2.4rem); color: var(--navy); line-height: 1; }
+    .stat .num span { color: var(--red); }
+    .stat .lbl { font-size: .82rem; color: var(--slate-500); margin-top: 8px; }
+
+    /* ── Divisions ── */
+    .sec-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+    .sec-head .eyebrow { justify-content: center; }
+    .divisions { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
+    .division {
+      position: relative; background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius-lg); padding: 34px 30px 30px; overflow: hidden;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+    }
+    .division::before { content:''; position:absolute; inset:0 0 auto 0; height:5px; background: linear-gradient(90deg,var(--blue),var(--red)); transform: scaleX(0); transform-origin:left; transition: transform .4s var(--ease); }
+    .division:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .division:hover::before { transform: scaleX(1); }
+    .division .ic { width: 60px; height: 60px; border-radius: 15px; display: grid; place-items: center; background: linear-gradient(140deg, var(--navy-700), var(--blue)); margin-bottom: 22px; }
+    .division .ic svg { width: 30px; height: 30px; stroke: #fff; }
+    .division .tag { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+    .division h3 { font-size: 1.45rem; margin: 6px 0 12px; }
+    .division p { color: var(--slate-500); font-size: .98rem; margin-bottom: 20px; }
+    .division ul { list-style: none; display: grid; gap: 9px; margin-bottom: 22px; }
+    .division li { display: flex; gap: 10px; align-items: center; font-size: .92rem; color: var(--slate-700); }
+    .division li svg { width: 17px; height: 17px; stroke: var(--blue); flex-shrink: 0; }
+    .division .more { display: inline-flex; align-items: center; gap: 8px; font-family:'Sora',sans-serif; font-weight: 600; font-size: .95rem; color: var(--navy); text-decoration: none; }
+    .division .more svg { width: 17px; height: 17px; transition: transform .25s var(--ease); }
+    .division:hover .more svg { transform: translateX(4px); }
+
+    /* ── About / split ── */
+    .about { background: var(--gray-50); }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-visual { position: relative; border-radius: var(--radius-lg); overflow: hidden; min-height: 380px;
+      background:
+        radial-gradient(440px 320px at 22% 22%, rgba(78,151,220,.2), transparent 60%),
+        radial-gradient(360px 280px at 90% 95%, rgba(237,28,36,.1), transparent 60%),
+        var(--blue-50); border: 1px solid var(--line); box-shadow: var(--shadow-md); }
+    .about-visual .est { position: absolute; left: 32px; bottom: 32px; color: var(--navy); }
+    .about-visual .est .y { font-family:'Sora',sans-serif; font-weight: 800; font-size: clamp(3rem,8vw,5rem); line-height: 1; background: linear-gradient(100deg,var(--blue),var(--red)); -webkit-background-clip:text; background-clip:text; color: transparent; }
+    .about-visual .est .t { letter-spacing: .14em; text-transform: uppercase; font-size: .82rem; color: var(--slate-500); }
+    .about-visual .ring { position: absolute; right: -60px; top: -60px; width: 240px; height: 240px; border: 2px solid rgba(3,78,162,.16); border-radius: 50%; }
+    .about-visual .ring.two { right: 20px; top: 40px; width: 120px; height: 120px; border-color: rgba(237,28,36,.3); animation: floaty 6s ease-in-out infinite; }
+    .feature-list { display: grid; gap: 18px; margin-top: 28px; }
+    .feature { display: flex; gap: 16px; align-items: flex-start; }
+    .feature .ic { width: 44px; height: 44px; border-radius: 11px; background: var(--white); border: 1px solid var(--line); display: grid; place-items: center; flex-shrink: 0; box-shadow: var(--shadow-sm); }
+    .feature .ic svg { width: 22px; height: 22px; stroke: var(--blue); }
+    .feature h4 { font-size: 1.05rem; margin-bottom: 3px; }
+    .feature p { font-size: .93rem; color: var(--slate-500); margin: 0; }
+
+    /* ── Sustainability banner ── */
+    .efuel { position: relative; overflow: hidden; background: var(--blue-50); border: 1px solid rgba(3,78,162,.12); color: var(--ink); border-radius: var(--radius-lg); padding: clamp(36px,5vw,64px); }
+    .efuel::after { content:''; position:absolute; right:-80px; bottom:-80px; width:340px; height:340px; border-radius:50%; background: radial-gradient(circle, rgba(237,28,36,.12), transparent 66%); }
+    .efuel::before { content:''; position:absolute; left:-60px; top:-60px; width:240px; height:240px; border-radius:50%; background: radial-gradient(circle, rgba(78,151,220,.18), transparent 66%); }
+    .efuel .inner { position: relative; z-index: 2; max-width: 640px; }
+    .efuel .eyebrow { color: var(--red); }
+    .efuel .eyebrow::before { background: var(--red); }
+    .efuel h2 { color: var(--navy); }
+    .efuel p { color: var(--slate-500); margin: 16px 0 28px; }
+
+    /* ── Downloads teaser ── */
+    .dl-teaser { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+    .dl-list { display: grid; gap: 12px; }
+    .dl-row { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); }
+    .dl-row:hover { transform: translateX(6px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .dl-row .ic { width: 40px; height: 40px; border-radius: 9px; background: var(--gray-100); display: grid; place-items: center; flex-shrink: 0; }
+    .dl-row .ic svg { width: 20px; height: 20px; stroke: var(--blue); }
+    .dl-row .meta { flex: 1; }
+    .dl-row .meta b { font-family:'Sora',sans-serif; font-size: .98rem; color: var(--navy); font-weight: 600; }
+    .dl-row .meta span { display: block; font-size: .8rem; color: var(--slate-500); }
+    .dl-row .arrow svg { width: 18px; height: 18px; stroke: var(--slate-300); transition: stroke .25s var(--ease), transform .25s var(--ease); }
+    .dl-row:hover .arrow svg { stroke: var(--blue); transform: translateX(3px); }
+
+    /* ── Contact / CTA ── */
+    .cta { background: var(--gray-50); color: var(--ink); }
+    .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .cta h2 { color: var(--navy); }
+    .cta p { color: var(--slate-500); margin: 16px 0 28px; }
+    .contact-card { background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-md); border-radius: var(--radius-lg); padding: 32px; }
+    .contact-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .contact-row:last-child { border-bottom: 0; }
+    .contact-row .ic { width: 42px; height: 42px; border-radius: 11px; background: var(--blue-50); display: grid; place-items: center; flex-shrink: 0; }
+    .contact-row .ic svg { width: 20px; height: 20px; stroke: var(--blue); }
+    .contact-row .lbl { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-500); }
+    .contact-row a, .contact-row .val { color: var(--navy); text-decoration: none; font-weight: 500; font-size: 1.02rem; }
+    .contact-row a:hover { color: var(--blue); }
+
+    /* ── Footer ── */
+    footer { background: var(--gray-50); color: var(--slate-500); padding: 64px 0 28px; border-top: 1px solid var(--line); }
+    .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+    .foot-brand .brand-sub { color: var(--slate-500); }
+    .foot-brand p { font-size: .92rem; margin: 16px 0 20px; max-width: 36ch; }
+    .socials { display: flex; gap: 10px; }
+    .socials a { width: 40px; height: 40px; border-radius: 10px; background: var(--white); border: 1px solid var(--line); display: grid; place-items: center; transition: background .25s var(--ease), transform .25s var(--ease); }
+    .socials a:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px); }
+    .socials svg { width: 19px; height: 19px; fill: var(--slate-700); transition: fill .25s var(--ease); }
+    .socials a:hover svg { fill: #fff; }
+    .foot-col h4 { color: var(--navy); font-size: .95rem; margin-bottom: 16px; }
+    .foot-col ul { list-style: none; display: grid; gap: 10px; }
+    .foot-col a { color: var(--slate-500); text-decoration: none; font-size: .9rem; transition: color .2s var(--ease); }
+    .foot-col a:hover { color: var(--blue); }
+    .foot-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 24px; font-size: .84rem; }
+    .foot-bottom nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-bottom a { color: var(--slate-500); text-decoration: none; }
+    .foot-bottom a:hover { color: var(--blue); }
+
+    /* ── Demo ribbon ── */
+    .demo-ribbon { background: var(--blue-50); color: var(--navy); text-align: center; font-size: .82rem; padding: 7px 16px; font-weight: 500; border-bottom: 1px solid rgba(3,78,162,.12); }
+    .demo-ribbon a { color: var(--blue); font-weight: 700; }
+
+    /* ── Effekte & Animationen ── */
+    /* Scroll-Fortschritt */
+    #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 2000; background: linear-gradient(90deg, var(--blue), var(--red)); transition: width .1s linear; }
+
+    /* fließender Verlauf auf der Hero-Headline */
+    .hero h1 .grad { background-size: 220% 100%; animation: hue 7s ease-in-out infinite; }
+    @keyframes hue { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+    /* gestaffeltes Einblenden der Bereich-Karten */
+    .divisions .reveal:nth-child(2) { transition-delay: .12s; }
+    .divisions .reveal:nth-child(3) { transition-delay: .24s; }
+
+    /* Hero-Karten: Maus-Parallax + sanftes Schweben */
+    .hero-cards { transition: transform .45s var(--ease); will-change: transform; }
+    .hcard .ic { transition: transform .4s var(--ease); }
+    .hcard:hover .ic { transform: rotate(-6deg) scale(1.08); }
+
+    /* Bereich-Icon Mikrobewegung */
+    .division .ic { transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+    .division:hover .ic { transform: rotate(-6deg) scale(1.08); box-shadow: 0 12px 26px rgba(3,78,162,.28); }
+
+    /* Button-Glanz */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after { content:''; position:absolute; top:0; left:-130%; width:55%; height:100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent); transform: skewX(-20deg); transition: left .65s var(--ease); pointer-events:none; }
+    .btn-primary:hover::after { left: 150%; }
+
+    /* Keyword-Laufband */
+    .marquee { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+    .marquee-track { display: flex; align-items: center; width: max-content; animation: slide 30s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-track span { display: inline-flex; align-items: center; font-family:'Sora',sans-serif; font-weight: 700; font-size: clamp(1rem,1.7vw,1.35rem); color: var(--navy); letter-spacing: -.01em; padding: 16px 0; white-space: nowrap; }
+    .marquee-track span::after { content:''; width: 7px; height: 7px; border-radius: 50%; background: var(--red); margin: 0 28px; flex-shrink: 0; }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* nach-oben-Button */
+    .to-top { position: fixed; right: 22px; bottom: 22px; width: 48px; height: 48px; border-radius: 50%; background: var(--blue); border: 0; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transform: translateY(12px) scale(.9); transition: opacity .3s var(--ease), transform .3s var(--ease), background .25s var(--ease), visibility .3s; z-index: 1500; }
+    .to-top.show { opacity: 1; visibility: visible; transform: none; }
+    .to-top:hover { background: var(--navy-700); transform: translateY(-3px); }
+    .to-top svg { width: 22px; height: 22px; stroke: #fff; }
+
+    /* ── Responsive ── */
+    @media (max-width: 980px) {
+      .hero-grid, .split, .dl-teaser, .cta-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-cards { order: 2; }
+      .divisions { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links, .nav-actions .btn { display: none; }
+      .burger { display: flex; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.12); }
+    }
+    @media (max-width: 560px) {
+      .foot-grid { grid-template-columns: 1fr; }
+      .about-visual { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <div id="progress" aria-hidden="true"></div>
+  <div class="demo-ribbon">Moderne Website-Demo · gestaltet von <a href="https://www.ava-digital.de" rel="noopener">AVA</a> für die Oest Gruppe</div>
+
+  <!-- ───────────────── NAV ───────────────── -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="Oest Gruppe Startseite">
+        <img class="logo-img" src="/oest-logo.svg" width="46" height="46" alt="Oest Gruppe Logo" />
+        <span class="brand-sub">Gruppe</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav-links">
+          <li><a href="#bereiche">Geschäftsbereiche</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#efuels">E-Fuels</a></li>
+          <li><a href="/downloads">Downloads</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#kontakt">Kontakt aufnehmen</a>
+        <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile menu -->
+  <div class="mobile" id="mobile" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="mobile-top">
+      <a class="brand" href="/" aria-label="Oest Gruppe Startseite">
+        <img class="logo-img" src="/oest-logo.svg" width="44" height="44" alt="Oest Gruppe Logo" />
+        <span class="brand-sub">Gruppe</span>
+      </a>
+      <button class="mobile-close" id="mobileClose" aria-label="Menü schließen">&times;</button>
+    </div>
+    <nav aria-label="Mobile Navigation">
+      <a href="#bereiche">Geschäftsbereiche</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#efuels">E-Fuels</a>
+      <a href="/downloads">Downloads</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn-primary" href="#kontakt">Kontakt aufnehmen</a>
+  </div>
+
+  <main id="main">
+    <!-- ───────────────── HERO ───────────────── -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-badge"><span class="dot"></span> Seit 1915 · Familienunternehmen aus dem Schwarzwald</span>
+            <h1>Drei Geschäfts­bereiche.<br><span class="grad">Eine Verantwortung.</span></h1>
+            <p class="sub">Die Oest Gruppe entwickelt maßgeschneiderte Schmierstoffe, gestaltet die Energie &amp; Mobilität von morgen und ist Technologieführer in der Klebstofftechnik – seit über 110 Jahren aus Freudenstadt für die Welt.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#bereiche">Geschäftsbereiche entdecken
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="btn btn-ghost" href="/downloads">Downloads</a>
+            </div>
+          </div>
+          <div class="hero-cards" aria-hidden="false">
+            <div class="hcard">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5.5 6 11a6 6 0 0 1-12 0c0-5.5 6-11 6-11z"/></svg></span>
+              <div><h3>Lubricants</h3><p>Maßgeschneiderte Schmierstoffe für Industrie &amp; Mobilität.</p></div>
+            </div>
+            <div class="hcard">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+              <div><h3>Energies</h3><p>Energie &amp; Mobilität von morgen – inkl. E-Fuels.</p></div>
+            </div>
+            <div class="hcard">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+              <div><h3>Systems</h3><p>Technologieführer in der Klebstoff- &amp; Plattentechnik.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container stats">
+        <div class="stats-grid">
+          <div class="stat"><div class="num" data-count="1915">1915</div><div class="lbl">gegründet im Schwarzwald</div></div>
+          <div class="stat"><div class="num" data-count="111">111<span>+</span></div><div class="lbl">Jahre Erfahrung (2026)</div></div>
+          <div class="stat"><div class="num" data-count="3">3</div><div class="lbl">starke Geschäftsbereiche</div></div>
+          <div class="stat"><div class="num" data-count="100">100<span>%</span></div><div class="lbl">familiengeführt</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── KEYWORD-MARQUEE ───────────────── -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>Schmierstoffe</span><span>AVIA Energien</span><span>E-Fuels</span><span>Klebstofftechnik</span><span>Nachhaltigkeit</span><span>Made in Freudenstadt</span><span>seit 1915</span>
+        <span>Schmierstoffe</span><span>AVIA Energien</span><span>E-Fuels</span><span>Klebstofftechnik</span><span>Nachhaltigkeit</span><span>Made in Freudenstadt</span><span>seit 1915</span>
+      </div>
+    </div>
+
+    <!-- ───────────────── DIVISIONS ───────────────── -->
+    <section id="bereiche" class="section">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Geschäftsbereiche</span>
+          <h2 class="h-lg">Drei Kompetenzfelder unter einem Dach</h2>
+          <p class="lead" style="margin:14px auto 0">Von der Forschung bis zur Anwendung – die Oest Gruppe verbindet Tradition mit Innovationskraft in drei eigenständigen Bereichen.</p>
+        </div>
+        <div class="divisions">
+          <article class="division reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5.5 6 11a6 6 0 0 1-12 0c0-5.5 6-11 6-11z"/></svg></span>
+            <span class="tag">Oest Lubricants</span>
+            <h3>Maßgeschneiderte Lösungen</h3>
+            <p>Hochwertige Schmierstoffe und Spezialprodukte für Automotive, Metallbearbeitung, Industrie und Bauwirtschaft – entwickelt für höchste Ansprüche.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automotive &amp; Industrie</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Metallbearbeitung &amp; Umformung</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Private Label &amp; Sonderkraftstoffe</li>
+            </ul>
+            <a class="more" href="/downloads">Broschüren ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+          <article class="division reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+            <span class="tag">Oest Energies</span>
+            <h3>Energie &amp; Mobilität von morgen</h3>
+            <p>Mitbegründer der deutschen AVIA: Kraftstoffe, Strom, Erdgas und Ökostrom sowie ein dichtes Tankstellennetz – heute und für die Zukunft.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AVIA Strom, Erdgas &amp; Ökostrom</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AVIACARD für Gewerbe &amp; Privat</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> E-Fuels &amp; klimaneutrale Mobilität</li>
+            </ul>
+            <a class="more" href="#efuels">Mehr zu E-Fuels <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+          <article class="division reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+            <span class="tag">Oest Systems</span>
+            <h3>Technologieführer Klebstofftechnik</h3>
+            <p>Innovative Anlagen und Systeme für die Holzindustrie, Sandwichelemente und Beschichtung – Engineering „Made in Freudenstadt“.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Holzindustrie &amp; Plattentechnik</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sandwichelemente</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Blue Line System &amp; Abfüllanlagen</li>
+            </ul>
+            <a class="more" href="/downloads">Datenblätter ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── ABOUT ───────────────── -->
+    <section id="ueber-uns" class="section about">
+      <div class="container split">
+        <div class="about-visual reveal" role="img" aria-label="Oest Gruppe – gegründet 1915">
+          <span class="ring"></span><span class="ring two"></span>
+          <div class="est"><div class="y">1915</div><div class="t">Gegründet in Freudenstadt</div></div>
+        </div>
+        <div class="reveal">
+          <span class="eyebrow">Über uns</span>
+          <h2 class="h-lg">Ein Familienunternehmen mit Weitblick</h2>
+          <p class="lead" style="margin-top:14px">1915 von Johann Georg Oest als Fabrik für technische Öle und Fette gegründet, ist die Oest Gruppe heute eine international tätige Unternehmensgruppe – und blieb dabei stets in Familienhand.</p>
+          <div class="feature-list">
+            <div class="feature">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/></svg></span>
+              <div><h4>Über 110 Jahre Tradition</h4><p>Vom Schwarzwälder Familienbetrieb zur internationalen Unternehmensgruppe.</p></div>
+            </div>
+            <div class="feature">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></span>
+              <div><h4>Mitbegründer der deutschen AVIA</h4><p>Seit 1952 Teil eines starken, mittelständisch geprägten Markenverbunds.</p></div>
+            </div>
+            <div class="feature">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M22 12h-6"/></svg></span>
+              <div><h4>Forschung &amp; Entwicklung</h4><p>Eigene Labore und Anwendungstechnik für maßgeschneiderte Lösungen.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── E-FUELS ───────────────── -->
+    <section id="efuels" class="section">
+      <div class="container">
+        <div class="efuel reveal">
+          <div class="inner">
+            <span class="eyebrow">Nachhaltigkeit</span>
+            <h2 class="h-lg">E-Fuels – die klimaneutrale Alternative</h2>
+            <p>Synthetische Kraftstoffe ermöglichen klimaneutrale Mobilität und Wärme im Bestand – ohne neue Infrastruktur. Die Oest Gruppe treibt E-Fuels als Baustein einer verantwortungsvollen Energiezukunft aktiv voran.</p>
+            <a class="btn btn-primary" href="#kontakt">Mehr erfahren
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── DOWNLOADS TEASER ───────────────── -->
+    <section class="section about">
+      <div class="container dl-teaser">
+        <div class="reveal">
+          <span class="eyebrow">Downloads</span>
+          <h2 class="h-lg">Alle Broschüren &amp; Flyer an einem Ort</h2>
+          <p class="lead" style="margin:14px 0 26px">Unternehmensbroschüre, Produktinformationen, Nachhaltigkeitsbericht und mehr – übersichtlich gebündelt und sofort als PDF verfügbar.</p>
+          <a class="btn btn-dark" href="/downloads">Zum Download-Bereich
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="dl-list reveal">
+          <a class="dl-row" href="/downloads">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+            <span class="meta"><b>Unternehmensbroschüre</b><span>PDF · Unternehmen</span></span>
+            <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="dl-row" href="/downloads">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+            <span class="meta"><b>Nachhaltigkeitsbericht</b><span>PDF · Unternehmen</span></span>
+            <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="dl-row" href="/downloads">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+            <span class="meta"><b>Ausbildung &amp; Studium</b><span>PDF · Karriere</span></span>
+            <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────── CONTACT / CTA ───────────────── -->
+    <section id="kontakt" class="section cta">
+      <div class="container cta-grid">
+        <div class="reveal">
+          <span class="eyebrow">Kontakt</span>
+          <h2 class="h-lg">Sprechen wir über Ihr Anliegen</h2>
+          <p>Ob Produktanfrage, Partnerschaft oder Karriere – unser Team in Freudenstadt ist für Sie da. Wir freuen uns auf Ihre Nachricht.</p>
+          <a class="btn btn-primary" href="mailto:info@oest.de">Nachricht schreiben
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
+          </a>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><div class="lbl">Adresse</div><div class="val">Georg-Oest-Straße 4<br>72250 Freudenstadt</div></div>
+          </div>
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div><div class="lbl">Telefon</div><a href="tel:+4974415390">+49 7441 5390</a></div>
+          </div>
+          <div class="contact-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></span>
+            <div><div class="lbl">E-Mail</div><a href="mailto:info@oest.de">info@oest.de</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/" aria-label="Oest Gruppe Startseite">
+            <img class="logo-img" src="/oest-logo.svg" width="46" height="46" alt="Oest Gruppe Logo" />
+            <span class="brand-sub">Gruppe</span>
+          </a>
+          <p>Maßgeschneiderte Schmierstoffe, zukunftsfähige Energie­lösungen und führende Klebstofftechnik – seit 1915 aus Freudenstadt.</p>
+          <div class="socials">
+            <a href="https://www.linkedin.com/company/oest-gruppe/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.2 8.4h4.6V24H.2zM8.2 8.4h4.4v2.1h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.4 3 5.4 6.9V24h-4.6v-6.9c0-1.6 0-3.7-2.3-3.7s-2.6 1.8-2.6 3.6V24H8.2z"/></svg></a>
+            <a href="https://www.facebook.com/oestgruppe" aria-label="Facebook" rel="noopener"><svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a>
+            <a href="https://www.youtube.com/oestgruppe" aria-label="YouTube" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6z"/></svg></a>
+            <a href="https://www.instagram.com/oestgruppe/" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5z"/></svg></a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>Bereiche</h4>
+          <ul>
+            <li><a href="#bereiche">Lubricants</a></li>
+            <li><a href="#bereiche">Energies</a></li>
+            <li><a href="#bereiche">Systems</a></li>
+            <li><a href="#efuels">E-Fuels</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Unternehmen</h4>
+          <ul>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="/downloads">Downloads</a></li>
+            <li><a href="#kontakt">Karriere</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="tel:+4974415390">+49 7441 5390</a></li>
+            <li><a href="mailto:info@oest.de">info@oest.de</a></li>
+            <li>Georg-Oest-Straße 4</li>
+            <li>72250 Freudenstadt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year">2026</span> Oest Gruppe · OEST LUBRICANTS GmbH &amp; Co. KG</span>
+        <nav aria-label="Rechtliches">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">AGB</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Nach oben scrollen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </button>
+
+  <script>
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // sticky nav + scroll progress + nach-oben-Button
+    const nav = document.getElementById('nav');
+    const progress = document.getElementById('progress');
+    const toTop = document.getElementById('toTop');
+    const onScroll = () => {
+      const sy = window.scrollY || document.documentElement.scrollTop;
+      nav.classList.toggle('scrolled', sy > 24);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (h > 0 ? (sy / h) * 100 : 0) + '%';
+      toTop.classList.toggle('show', sy > 600);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+
+    // mobile menu
+    const burger = document.getElementById('burger');
+    const mobile = document.getElementById('mobile');
+    const close  = document.getElementById('mobileClose');
+    const toggle = (open) => {
+      mobile.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => toggle(true));
+    close.addEventListener('click', () => toggle(false));
+    mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+
+    // reveal on scroll
+    const els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('visible'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+      }, { threshold: 0.14 });
+      els.forEach(el => io.observe(el));
+    }
+
+    // Zähler-Animation für die Statistik
+    const nums = document.querySelectorAll('.stat .num[data-count]');
+    const animateCount = (el) => {
+      const target = +el.dataset.count;
+      const dur = 1500, start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.childNodes[0].nodeValue = String(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick);
+        else el.childNodes[0].nodeValue = String(target);
+      };
+      requestAnimationFrame(tick);
+    };
+    const statsEl = document.querySelector('.stats');
+    if (statsEl && !reduce && 'IntersectionObserver' in window) {
+      nums.forEach(el => { el.childNodes[0].nodeValue = '0'; });
+      const sio = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if (en.isIntersecting) { nums.forEach(animateCount); sio.disconnect(); } });
+      }, { threshold: 0.4 });
+      sio.observe(statsEl);
+    }
+
+    // Hero-Karten: dezenter Maus-Parallax
+    const hero = document.getElementById('hero');
+    const heroCards = document.querySelector('.hero-cards');
+    if (hero && heroCards && !reduce && window.matchMedia('(pointer:fine)').matches) {
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        heroCards.style.transform = `translate(${x * 16}px, ${y * 16}px)`;
+      });
+      hero.addEventListener('mouseleave', () => { heroCards.style.transform = ''; });
+    }
+  </script>
+</body>
+</html>

@@ -2,6 +2,20 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "nuebel-bau",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "5174", "nuebel-bau-website"],
+      "cwd": "${workspaceRoot}",
+      "port": 5174
+    },
+    {
+      "name": "oest-website",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "5175", "oest-website"],
+      "cwd": "${workspaceRoot}",
+      "port": 5175
+    },
+    {
       "name": "ava-website",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
