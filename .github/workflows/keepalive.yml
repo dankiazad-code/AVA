@@ -1,0 +1,17 @@
+# Hält die Malak-Demo auf Render wach (Free-Plan schläft sonst nach 15 Min. ein).
+# Läuft kostenlos über GitHub Actions – kein zusätzliches Konto nötig.
+# Hinweis: GitHub pausiert Zeitpläne nach ~60 Tagen ohne Repo-Aktivität;
+# ein beliebiger neuer Commit aktiviert sie wieder.
+name: Malak-Demo wachhalten
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Demo anpingen
+        run: curl -s -o /dev/null -m 60 https://malak-demo.onrender.com/api/products || true
