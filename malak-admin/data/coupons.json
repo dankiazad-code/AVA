@@ -1,0 +1,14 @@
+[
+  {
+    "id": "gmrgx3m889c7a28",
+    "code": "WILLKOMMEN10",
+    "type": "percent",
+    "value": 10,
+    "minOrder": 20,
+    "maxUses": 100,
+    "usedCount": 4,
+    "expiresAt": "",
+    "active": true,
+    "createdAt": 1783807788104
+  }
+]

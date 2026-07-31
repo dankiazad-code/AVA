@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cmrgx3m36131dce",
+    "name": "Getränke",
+    "parent": "",
+    "icon": "🥤",
+    "image": "",
+    "sortOrder": 0
+  },
+  {
+    "id": "cmrgx3m3637ea8a",
+    "name": "Getrocknete",
+    "parent": "",
+    "icon": "🌿",
+    "image": "",
+    "sortOrder": 1
+  },
+  {
+    "id": "cmrgx3m368a732c",
+    "name": "Getreide",
+    "parent": "",
+    "icon": "🌾",
+    "image": "",
+    "sortOrder": 2
+  },
+  {
+    "id": "cmrgx3m36bfd4af",
+    "name": "Eingelegte Gurken",
+    "parent": "",
+    "icon": "🥒",
+    "image": "",
+    "sortOrder": 3
+  },
+  {
+    "id": "cmrgx3m36a74729",
+    "name": "Süßigkeiten",
+    "parent": "",
+    "icon": "🍬",
+    "image": "",
+    "sortOrder": 4
+  },
+  {
+    "id": "cmrgx3m36095bbd",
+    "name": "Cosmetics",
+    "parent": "",
+    "icon": "🧴",
+    "image": "",
+    "sortOrder": 5
+  }
+]

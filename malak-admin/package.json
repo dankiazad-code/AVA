@@ -1,0 +1,22 @@
+{
+  "name": "malak-admin",
+  "version": "1.0.0",
+  "description": "Internes Verwaltungssystem & Shop-Backend für die Malak GmbH – Produkte, Preise, Bilder und Lieferung selbst verwalten.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "cloudflared": "^0.7.1"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "storeName": "Malak GmbH",
+  "tagline": "Günstig & gesund",
+  "currency": "EUR",
+  "freeShipping": 50,
+  "shippingCost": 4.9,
+  "deliveryInfo": "Lieferung innerhalb von 2–4 Werktagen. Gratis Versand ab 50 €.",
+  "pickupInfo": "Abholung im Lager in Aitrach nach Absprache möglich.",
+  "contactEmail": "info@malak-gmbh.de",
+  "contactPhone": "+49 1575 4895590",
+  "address": "Bahnhofstraße 19, 87527 Sonthofen",
+  "language": "de",
+  "domain": "malak-gmbh.de",
+  "logoUrl": "/malak-logo.jpg",
+  "faviconUrl": "",
+  "primaryColor": "#1F9B45",
+  "taxRateDefault": 7,
+  "orderCounter": 10014,
+  "paymentMethods": [
+    {
+      "id": "paypal",
+      "label": "PayPal",
+      "enabled": true
+    },
+    {
+      "id": "card",
+      "label": "Kreditkarte",
+      "enabled": true
+    },
+    {
+      "id": "applepay",
+      "label": "Apple Pay",
+      "enabled": false
+    },
+    {
+      "id": "googlepay",
+      "label": "Google Pay",
+      "enabled": false
+    },
+    {
+      "id": "klarna",
+      "label": "Klarna",
+      "enabled": false
+    },
+    {
+      "id": "banktransfer",
+      "label": "Banküberweisung",
+      "enabled": true
+    },
+    {
+      "id": "cod",
+      "label": "Barzahlung bei Abholung",
+      "enabled": true
+    }
+  ],
+  "shippingMethods": [
+    {
+      "id": "dhl",
+      "label": "DHL Standard",
+      "cost": 4.9,
+      "enabled": true
+    },
+    {
+      "id": "pickup",
+      "label": "Abholung in Aitrach",
+      "cost": 0,
+      "enabled": true
+    }
+  ],
+  "shippingZones": [
+    {
+      "name": "Deutschland",
+      "cost": 4.9
+    },
+    {
+      "name": "EU",
+      "cost": 12.9
+    }
+  ],
+  "legal": {
+    "impressum": "Malak GmbH\nBahnhofstraße 19\n87527 Sonthofen\n\nVertreten durch die Geschäftsführung.\nKontakt: info@malak-gmbh.de · +49 1575 4895590",
+    "datenschutz": "Hier die Datenschutzerklärung einfügen (im Verwaltungssystem unter Einstellungen → Rechtliches bearbeitbar).",
+    "agb": "Hier die AGB einfügen (im Verwaltungssystem unter Einstellungen → Rechtliches bearbeitbar)."
+  }
+}

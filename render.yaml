@@ -1,0 +1,24 @@
+# Render Blueprint – stellt die Malak-Demo dauerhaft online (kostenloser Plan).
+#
+# Einrichtung (einmalig, ~5 Minuten):
+#   1. Dieses Repo zu GitHub pushen (malak-admin/ muss enthalten sein)
+#   2. https://render.com → "Sign in with GitHub" (kostenlos, keine Kreditkarte)
+#   3. New + → Blueprint → Repo "AVA" auswählen → Apply
+#   4. Feste URL: https://malak-demo.onrender.com  (Backoffice: /admin)
+#
+# Hinweis Free-Plan: Nach 15 Min. ohne Besucher schläft der Dienst ein;
+# der erste Aufruf danach dauert ~30–60 Sek., funktioniert aber immer.
+# Änderungen im Backoffice werden bei jedem Neustart auf die Demo-Daten
+# zurückgesetzt (für eine Demo ideal – sie bleibt immer aufgeräumt).
+
+services:
+  - type: web
+    name: malak-demo
+    runtime: node
+    rootDir: malak-admin
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true

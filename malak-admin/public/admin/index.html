@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Malak GmbH · Backoffice</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F9B45'/%3E%3Ctext x='16' y='22' font-size='18' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="loginView" class="login-wrap" hidden>
+  <div class="login-panel">
+    <div class="login-side">
+      <div class="login-side-logo">M</div>
+      <h2>Malak GmbH</h2>
+      <p>Backoffice für Ihren Online-Shop.</p>
+      <ul class="login-features">
+        <li>Produkte, Lager &amp; Preise verwalten</li>
+        <li>Bestellungen abwickeln</li>
+        <li>Kunden &amp; Gutscheine</li>
+        <li>Umsatz-Statistiken in Echtzeit</li>
+      </ul>
+    </div>
+    <form class="login-card" id="loginForm" autocomplete="on">
+      <h1>Anmeldung</h1>
+      <p class="login-sub">Bitte melden Sie sich mit Ihren Zugangsdaten an.</p>
+      <div class="field">
+        <label for="username">Benutzername</label>
+        <input type="text" id="username" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="password">Passwort</label>
+        <input type="password" id="password" autocomplete="current-password" required />
+      </div>
+      <div class="field" id="totpField" hidden>
+        <label for="totp">2FA-Code (Authenticator-App)</label>
+        <input type="text" id="totp" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="one-time-code" />
+      </div>
+      <div class="login-error" id="loginError" hidden></div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Anmelden</button>
+      <p class="login-note">Zugangsdaten vergessen? Wenden Sie sich an Ihren Website-Betreuer.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="appView" class="app" hidden>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-brand">
+      <span class="side-logo">M</span>
+      <span class="side-brand-text">Malak GmbH<small>Backoffice</small></span>
+    </div>
+    <nav class="side-nav" id="sideNav"><!-- per JS --></nav>
+    <div class="side-foot">
+      <a href="/" target="_blank" class="side-link">🛒 <span>Shop ansehen</span></a>
+      <button class="side-link" id="logoutBtn">⎋ <span>Abmelden</span></button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Menü">☰</button>
+      <div class="crumbs" id="crumbs">Start</div>
+      <div class="topbar-search">
+        <input type="search" id="globalSearch" placeholder="Suchen: Produkte, Bestellungen, Kunden…  (Strg+K)" />
+        <div class="search-results" id="searchResults" hidden></div>
+      </div>
+      <button class="icon-round" id="themeToggle" title="Dark Mode umschalten">🌙</button>
+      <div class="bell-wrap">
+        <button class="icon-round" id="bellBtn" title="Benachrichtigungen">🔔<span class="bell-dot" id="bellDot" hidden></span></button>
+        <div class="dropdown" id="bellDrop" hidden>
+          <div class="drop-head">Benachrichtigungen <button class="link-btn" id="readAllBtn">Alle gelesen</button></div>
+          <div id="bellList" class="drop-list"></div>
+        </div>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-btn" id="profileBtn"><span class="user-avatar" id="userAvatar">?</span><span id="userNameTop">–</span></button>
+        <div class="dropdown" id="profileDrop" hidden>
+          <div class="drop-head" id="profileInfo">–</div>
+          <button class="drop-item" id="pwChangeBtn">🔑 Passwort ändern</button>
+          <button class="drop-item" id="totpBtn">🛡 Zwei-Faktor (2FA)</button>
+          <button class="drop-item" id="logoutBtn2">⎋ Abmelden</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="content" id="viewRoot"><!-- Views werden per JS gerendert --></main>
+  </div>
+</div>
+
+<div class="modal-root" id="modalRoot"></div>
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
