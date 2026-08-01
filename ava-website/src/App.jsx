@@ -7,6 +7,13 @@ const CalendlyEmbed = lazy(() => import("./components/CalendlyEmbed.jsx"));
 const ASSISTANT_ID = "75d1fe79-eb98-48e0-97dc-f917f5610725";
 const VAPI_KEY    = "11a16c26-443f-4159-a318-204ec041741b";
 
+/* ── Google Analytics event helper ── */
+function track(event, params = {}) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", event, params);
+  }
+}
+
 let vapiInstance = null;
 let vapiLoadPromise = null;
 function loadVapi() {
@@ -53,7 +60,7 @@ function VapiCallButton({ size = "md" }) {
 
   useEffect(() => {
     mountedRef.current = true;
-    const onStart = () => { if (mountedRef.current) setStatus("active"); };
+    const onStart = () => { if (mountedRef.current) setStatus("active"); track("vapi_call_start", { source: "web" }); };
     const onEnd   = () => { if (mountedRef.current) setStatus("idle"); };
     const onErr   = (e) => { console.error("Vapi error:", e); if (mountedRef.current) setStatus("idle"); };
 
@@ -543,7 +550,7 @@ function ContactForm() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encodeForm({ "form-name": "kontakt", "bot-field": bot, ...state }),
     })
-      .then(res => { if (!res.ok) throw new Error(res.status); setStatus("success"); })
+      .then(res => { if (!res.ok) throw new Error(res.status); setStatus("success"); track("generate_lead", { form: "kontakt" }); })
       .catch(() => setStatus("error"));
   }
 
@@ -611,6 +618,17 @@ export default function App() {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  // Calendly booking → GA conversion event
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin.includes("calendly.com") && e.data?.event === "calendly.event_scheduled") {
+        track("calendly_booking", { source: "calendly" });
+      }
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
   }, []);
 
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(),
@@ -859,7 +877,7 @@ export default function App() {
               { icon: Icon.mic,      title: "KI Voice Agent",      body: "Gespräche auf menschlichem Niveau — bucht, qualifiziert und konvertiert rund um die Uhr." },
               { icon: Icon.globe,    title: "Premium Websites",    body: "Hochkonvertierende Websites für moderne Hotels — designed für Vertrauen und Performance." },
               { icon: Icon.link,     title: "CRM-Integration",     body: "Nahtlose Anbindung an Salesforce, HubSpot, Mews, Opera und 200+ weitere Systeme." },
-              { icon: Icon.zap,      title: "Workflow-Automation", body: "End-to-End-Automatisierung von Buchungen, E-Mails, Follow-ups und Reports." },
+              { icon: Icon.zap,      title: "Company OS",          body: "Über 90 Firmenabläufe automatisiert — Rechnungen, Mahnungen, Anfragen, Personal. Ihre Firma läuft von selbst." },
               { icon: Icon.building, title: "Hotel AI System",     body: "Speziell entwickelt für Hospitality: Concierge-AI, Room Service, Gästebetreuung." },
               { icon: Icon.shield,   title: "DSGVO & Sicherheit",  body: "Ende-zu-Ende verschlüsselt, EU-Server, vollständig DSGVO-konform. Ihre Daten bleiben Ihre Daten." },
             ].map(({ icon, title, body }) => (
@@ -1083,14 +1101,21 @@ export default function App() {
                 <span className="ava-footer__col-label">Services</span>
                 <a href="#services">KI Voice Agent</a>
                 <a href="#services">Premium Websites</a>
-                <a href="#services">CRM-Integration</a>
-                <a href="#services">Hotel AI</a>
+                <a href="/company-os.html">Company OS</a>
+                <a href="/ki-telefonassistent-freudenstadt.html">KI-Telefonassistent</a>
               </div>
               <div>
                 <span className="ava-footer__col-label">Unternehmen</span>
                 <a href="#why">Warum AVA</a>
                 <a href="#pricing">Preise</a>
+                <a href="#referenzen">Referenzen</a>
                 <a href="#contact">Kontakt</a>
+              </div>
+              <div>
+                <span className="ava-footer__col-label">Webdesign vor Ort</span>
+                <a href="/website-erstellen-lassen-freudenstadt.html">Website Freudenstadt</a>
+                <a href="/website-handwerker-nordschwarzwald.html">Website für Handwerker</a>
+                <a href="/fahrschul-website-freudenstadt.html">Fahrschul-Website</a>
               </div>
               <div>
                 <span className="ava-footer__col-label">Social</span>
