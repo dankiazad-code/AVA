@@ -1,0 +1,22 @@
+# Überwacht Company OS auf dem Hetzner-Server (2.28.31.100).
+# Prüft alle 15 Minuten den Health-Check; schlägt er fehl, schlägt der
+# Workflow fehl und GitHub schickt automatisch eine Benachrichtigungs-E-Mail.
+# Läuft kostenlos über GitHub Actions – kein zusätzliches Konto nötig.
+# Hinweis: GitHub pausiert Zeitpläne nach ~60 Tagen ohne Repo-Aktivität;
+# ein beliebiger neuer Commit aktiviert sie wieder.
+name: Company OS überwachen
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health-Check prüfen
+        run: |
+          antwort=$(curl -s -m 30 --retry 3 --retry-delay 10 https://2.28.31.100.sslip.io/api/health)
+          echo "Antwort: $antwort"
+          echo "$antwort" | grep -q '"status":"ok"'
