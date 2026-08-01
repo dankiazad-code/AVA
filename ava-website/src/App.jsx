@@ -114,19 +114,6 @@ function GradientMesh() {
   );
 }
 
-/* ── Stats Ticker ── */
-const TICKER = ["● 500+ Hotels vertrauen AVA", "€2.1M eingespart", "99.9% Uptime", "40+ Sprachen", "< 1s Reaktionszeit", "24/7 verfügbar", "3 Wochen bis Go-Live", "Kein Langzeitvertrag"];
-function StatsTicker() {
-  const items = [...TICKER, ...TICKER];
-  return (
-    <div className="ava-ticker" aria-hidden="true">
-      <div className="ava-ticker__track">
-        {items.map((s, i) => <span key={i} className="ava-ticker__item">{s}<span className="ava-ticker__sep">·</span></span>)}
-      </div>
-    </div>
-  );
-}
-
 /* ── Magnetic Button ── */
 function MagBtn({ children, href, className, target, rel, style }) {
   const ref = useRef(null);
@@ -249,11 +236,11 @@ function AVALogo({ height = 52 }) {
 
 /* ── Live call demo ── */
 const SCRIPT = [
-  { role: "ava", text: "Guten Morgen, Grand Vienna Hotel. Wie kann ich Ihnen helfen?" },
-  { role: "caller", text: "Ich möchte eine Suite für nächsten Freitag buchen." },
-  { role: "ava", text: "Natürlich! Die Executive Suite ist verfügbar. Soll ich diese für eine Nacht reservieren?" },
-  { role: "caller", text: "Ja bitte, und kann ich einen Late Checkout haben?" },
-  { role: "ava", text: "Erledigt — Suite gebucht mit Late Checkout um 14 Uhr. Bestätigung wurde an Ihre E-Mail gesendet." },
+  { role: "ava", text: "Malerbetrieb Weber, guten Tag! Wie kann ich Ihnen helfen?" },
+  { role: "caller", text: "Ich bräuchte ein Angebot – wir wollen das Wohnzimmer streichen lassen." },
+  { role: "ava", text: "Gerne! Wie groß ist der Raum ungefähr, und bis wann soll es fertig sein?" },
+  { role: "caller", text: "Etwa 25 Quadratmeter, am besten noch diesen Monat." },
+  { role: "ava", text: "Notiert. Herr Weber ruft Sie heute noch zurück – Ihre Anfrage ist bereits bei ihm im Postfach." },
 ];
 
 function CallDemo() {
@@ -310,7 +297,7 @@ function CallDemo() {
     <div className="ava-call__window">
       <div className="ava-call__header">
         <span className="ava-call__header-dot ava-call__header-dot--green" />
-        <span className="ava-call__header-label">AVA · Live-Gespräch · Grand Vienna Hotel</span>
+        <span className="ava-call__header-label">AVA · Beispiel-Gespräch · Malerbetrieb</span>
         <div className="ava-call__waveform">
           {Array.from({ length: 10 }, (_, i) => (
             <span key={i} className="ava-call__waveform-bar" style={{ animationDelay: `${i * 0.08}s` }} />
@@ -344,11 +331,11 @@ function CallDemo() {
 
 /* ── FAQ ── */
 const FAQS = [
-  { q: "Wie schnell ist AVA einsatzbereit?", a: "Die meisten Kunden gehen innerhalb von 3 Werktagen live. Wir übernehmen die komplette Einrichtung, Stimmtraining und Integration in Ihre bestehenden Systeme." },
-  { q: "Funktioniert AVA mit meiner Hotelsoftware?", a: "Ja. AVA integriert sich mit allen gängigen PMS-, CRM- und Buchungsplattformen per API. Individuelle Integrationen sind ebenfalls möglich." },
-  { q: "Welche Sprachen unterstützt AVA?", a: "AVA spricht 40+ Sprachen auf menschlichem Niveau. Die Spracherkennung erfolgt automatisch beim Anruf." },
-  { q: "Gibt es einen Langzeitvertrag?", a: "Keine Bindung. Unsere Pakete laufen monatlich kündbar. Wir verdienen Ihr Vertrauen jeden Monat durch messbare Ergebnisse." },
-  { q: "Wie werden Datenschutz und DSGVO gehandhabt?", a: "Alle Gesprächsdaten sind Ende-zu-Ende verschlüsselt, werden auf EU-Servern gespeichert und sind vollständig DSGVO-konform. Ihre Daten gehören Ihnen." },
+  { q: "Was kostet mich der Einstieg?", a: "Das Erstgespräch ist kostenlos und unverbindlich. Danach wissen Sie genau, was Ihr Projekt kostet: Websites ab 699 € einmalig, der Telefonassistent ab 149 €/Monat, Company OS ab 99 €/Monat. Abos sind monatlich kündbar." },
+  { q: "Wie schnell bin ich startklar?", a: "Websites und Telefonassistent sind in der Regel innerhalb einer Woche einsatzbereit, Company OS oft am selben Tag. Wir übernehmen die Einrichtung – Sie liefern nur Ihre Informationen." },
+  { q: "Brauche ich technisches Wissen?", a: "Nein. Wir richten alles ein und erklären es verständlich. Danach genügt es, E-Mails lesen zu können – den Rest erledigen die Systeme." },
+  { q: "Gibt es einen Langzeitvertrag?", a: "Nein. Unsere Abos laufen monatlich kündbar. Wir verdienen Ihr Vertrauen jeden Monat neu – durch Ergebnisse, nicht durch Vertragsbindung." },
+  { q: "Wie werden Datenschutz und DSGVO gehandhabt?", a: "Ihre Daten werden auf Servern in Deutschland bzw. der EU verarbeitet, Verbindungen sind verschlüsselt, und Sie erhalten von uns einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO." },
 ];
 
 function FAQ() {
@@ -379,78 +366,56 @@ function StatCard({ target, prefix, suffix, desc }) {
   );
 }
 
-/* ── Press bar ── */
-function PressBar() {
-  const items = ["Hospitality Tech", "Hotel Management", "AI Business Review", "Future Hospitality", "TechCrunch"];
-  return (
-    <div className="ava-press">
-      <div className="ava-container">
-        <p className="ava-press__label">Bekannt aus</p>
-        <div className="ava-press__logos">
-          {items.map(n => <span key={n} className="ava-press__logo">{n}</span>)}
-        </div>
-      </div>
-    </div>
-  );
-}
 
-/* ── Testimonials data ── */
-const TESTIMONIALS = [
-  { quote: "AVA nimmt jeden Anruf sofort an. Wir sind von 40% verpasster Buchungen auf 100% Erfassungsrate gegangen. Umsatz +€28k im ersten Monat.", name: "Markus H.", role: "GM · Grand Vienna Hotel", initials: "MH" },
-  { quote: "Unsere Website-Conversion hat sich verdreifacht. Gäste erwähnen das Design ständig als erstes Argument für unser Haus.", name: "Sarah L.", role: "CEO · EstateFlow Realty", initials: "SL" },
-  { quote: "Das Automationssystem von AVA spart unserem Team 40+ Stunden pro Woche. Wie fünf neue Mitarbeiter für €399 im Monat.", name: "Dr. Karim R.", role: "Direktor · NexGen Clinics", initials: "KR" },
-  { quote: "Innerhalb von 3 Tagen war AVA live. Reibungslose Einrichtung, das Team war immer erreichbar. Wir würden es jedem Hotel empfehlen.", name: "Lisa M.", role: "Inhaberin · Boutique Hotel Salzburg", initials: "LM" },
-  { quote: "AVA beantwortet Anfragen auf Deutsch, Englisch und Japanisch — unsere internationalen Gäste lieben es. Kein verpasster Anruf mehr.", name: "Thomas K.", role: "Manager · Alpine Resort", initials: "TK" },
-];
-
-/* ── Pricing data ── */
+/* ── Produkte & Preise ── */
 const PLANS = [
   {
-    tier: "Starter",
-    price: "€399",
-    period: "/Monat",
-    sub: "Für kleine Hotels",
+    tier: "Premium Website",
+    price: "ab 699 €",
+    period: " einmalig",
+    sub: "Ihr Auftritt, der Kunden gewinnt",
     popular: false,
+    href: "/website-erstellen-lassen-freudenstadt.html",
     features: [
-      "KI Voice Agent",
-      "24/7 Anrufannahme",
-      "FAQ-Beantwortung",
-      "E-Mail-Benachrichtigungen",
-      "Basis-Reporting",
+      "Design, Texte & Aufbau komplett von uns",
+      "Mobil-optimiert und blitzschnell",
+      "Kontakt, Anfahrt & Google-Auffindbarkeit",
+      "Impressum & Datenschutz inklusive",
+      "Auf Wunsch: Pflege & Hosting",
     ],
-    cta: "Starter wählen",
+    cta: "Mehr zur Website",
   },
   {
-    tier: "Growth",
-    price: "€899",
+    tier: "KI-Telefonassistent",
+    price: "ab 149 €",
     period: "/Monat",
-    sub: "Meistgewählt",
+    sub: "Nie wieder einen Anruf verpassen",
     popular: true,
+    href: "/ki-telefonassistent-freudenstadt.html",
     features: [
-      "Alles aus Starter",
-      "Reservierungs-Automation",
-      "CRM-Integration",
-      "Website-Integration",
-      "Mehrsprachiger Support",
-      "Monatliche Optimierung",
+      "Nimmt jeden Anruf an — 24/7, auf Deutsch",
+      "Erfasst Rückrufwünsche & Terminanfragen",
+      "Sofortige Benachrichtigung per E-Mail",
+      "Einrichtung einmalig ab 99 €",
+      "Monatlich kündbar",
     ],
-    cta: "Growth wählen",
+    cta: "Mehr zum Telefonassistenten",
   },
   {
-    tier: "Enterprise",
-    price: "Custom",
-    period: "",
-    sub: "Für Hotelgruppen",
+    tier: "Company OS",
+    price: "ab 99 €",
+    period: "/Monat",
+    sub: "Ihre Firma läuft automatisch",
     popular: false,
+    href: "/company-os.html",
     features: [
-      "Alles aus Growth",
-      "Multi-Standort Support",
-      "Individuelle Integrationen",
-      "Advanced Workflows",
-      "Dedizierter Support",
-      "Enterprise-Infrastruktur",
+      "Über 90 Abläufe: Rechnungen, Mahnungen, Anfragen",
+      "Antwortet Kunden in Sekunden — automatisch",
+      "Ihr eigenes E-Mail-Postfach angebunden",
+      "Server in Deutschland, 2FA, tägliche Backups",
+      "Monatlich kündbar",
     ],
-    cta: "Kontakt aufnehmen",
+    cta: "Mehr zu Company OS",
   },
 ];
 
@@ -640,8 +605,6 @@ export default function App() {
     <div className="app">
       <a href="#main-content" className="ava-skip-link">Zum Inhalt springen</a>
 
-      <StatsTicker />
-
       {/* ── NAV ── */}
       <nav className={`ava-nav${scrolled ? " ava-nav--scrolled" : ""}`}>
         <div className="ava-nav__inner">
@@ -650,8 +613,7 @@ export default function App() {
           </a>
           <ul className="ava-nav__links">
             <li><a href="#why">Warum AVA</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#pricing">Preise</a></li>
+            <li><a href="#services">Produkte &amp; Preise</a></li>
             <li><a href="#roi">ROI</a></li>
             <li><a href="#referenzen">Referenzen</a></li>
             <li><a href="#contact">Kontakt</a></li>
@@ -665,7 +627,7 @@ export default function App() {
         </div>
         {menuOpen && (
           <div className="ava-nav__mobile">
-            {[["#why","Warum AVA"],["#services","Services"],["#pricing","Preise"],["#roi","ROI"],["#referenzen","Referenzen"],["#contact","Kontakt"]].map(([href, label]) => (
+            {[["#why","Warum AVA"],["#services","Produkte & Preise"],["#roi","ROI"],["#referenzen","Referenzen"],["#contact","Kontakt"]].map(([href, label]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
             ))}
           </div>
@@ -683,28 +645,27 @@ export default function App() {
         <div className="ava-container">
           <div className="ava-hero__badge">
             <span className="ava-hero__badge-dot" />
-            Europas führende KI-Automation für Hotels
+            Digitalagentur · Freudenstadt
           </div>
 
           <h1 className="ava-hero__h1">
-            <span className="ava-hero__h1-light">Der KI-Agent für</span>
-            <span className="ava-hero__h1-bold"><Typewriter words={["Hotels.", "Resorts.", "Restaurants.", "Spas.", "Ihr Haus."]} /></span>
+            <span className="ava-hero__h1-light">Wir bauen</span>
+            <span className="ava-hero__h1-bold"><Typewriter words={["Websites.", "KI-Telefonassistenten.", "Company OS.", "Ihre Zukunft."]} /></span>
           </h1>
 
           <p className="ava-hero__sub">
-            AVA automatisiert Ihre Gästekommunikation, steigert Ihre Buchungsrate
-            und spart tausende Euro monatlich — 24/7, in jeder Sprache, ohne Pause.
+            Drei Produkte, ein Versprechen: Ihre Firma gewinnt Kunden und spart Zeit —
+            während Sie Ihre eigentliche Arbeit machen.
           </p>
 
           <div className="ava-hero__actions">
-            <MagBtn href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
-              className="ava-btn ava-btn--primary ava-btn--lg">
-              Kostenloses Strategiegespräch
+            <MagBtn href="#services" className="ava-btn ava-btn--primary ava-btn--lg">
+              Produkte &amp; Preise
               <span className="ava-btn__arrow">→</span>
             </MagBtn>
-            <MagBtn href="#why" className="ava-btn ava-btn--ghost ava-btn--lg">
-              <span className="ava-btn__play">▶</span>
-              Mehr erfahren
+            <MagBtn href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
+              className="ava-btn ava-btn--ghost ava-btn--lg">
+              Kostenloses Erstgespräch
             </MagBtn>
           </div>
 
@@ -724,40 +685,26 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── TRUSTED BY ── */}
-      <section className="ava-trusted">
-        <div className="ava-container">
-          <p className="ava-trusted__label">Vertraut von Hotels und Servicebetrieben</p>
-          <div className="ava-trusted__logos">
-            {["Grand Vienna", "EstateFlow", "MediCare Pro", "LegalEdge", "NexGen Clinics"].map(n => (
-              <span key={n} className="ava-trusted__logo">{n}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <PressBar />
-
       {/* ── WHY AVA ── */}
       <section className="ava-section" id="why">
         <div className="ava-container">
           <div ref={r1} className="ava-reveal" style={{ textAlign: "center" }}>
             <p className="ava-eyebrow">Warum AVA</p>
             <h2 className="ava-h2">
-              Gebaut für moderne Hospitality.<br />
+              Gebaut für den Mittelstand.<br />
               <em>Ergebnisse, keine Versprechen.</em>
             </h2>
             <p className="ava-body" style={{ margin: "0 auto 0", maxWidth: "560px" }}>
-              Jede Gästeinteraktion zählt. AVA stellt sicher, dass keine einzige verloren geht.
+              Jeder Anruf, jede Anfrage, jede Rechnung zählt. AVA stellt sicher, dass nichts verloren geht.
             </p>
           </div>
 
           <div className="ava-why__grid" style={{ marginTop: "4rem" }}>
             {[
-              { num: "01", icon: "📈", title: "Mehr Buchungen", body: "Erfassen Sie Anfragen, die sonst verloren gehen. Kein Anruf bleibt unbeantwortet." },
-              { num: "02", icon: "⚡", title: "Sofortige Antworten", body: "Gäste erhalten in Sekunden eine Antwort — rund um die Uhr, auch nachts und an Feiertagen." },
-              { num: "03", icon: "🤖", title: "Intelligente Automation", body: "Reduziert repetitive Aufgaben und entlastet Ihr Team für das Wesentliche." },
-              { num: "04", icon: "💶", title: "Messbares Wachstum", body: "Positiver ROI ab dem ersten Monat. Transparente Zahlen, klare Ergebnisse." },
+              { num: "01", icon: "📈", title: "Mehr Aufträge", body: "Anfragen, die sonst verloren gehen, werden erfasst und beantwortet. Kein Anruf bleibt unbeantwortet." },
+              { num: "02", icon: "⚡", title: "Sofortige Antworten", body: "Ihre Kunden erhalten in Sekunden eine Antwort — rund um die Uhr, auch nachts und an Feiertagen." },
+              { num: "03", icon: "🤖", title: "Weniger Papierkram", body: "Rechnungen, Mahnungen und Formulare laufen automatisch. Ihr Team hat den Kopf frei fürs Wesentliche." },
+              { num: "04", icon: "🇩🇪", title: "Vor Ort & erreichbar", body: "Eine Agentur aus Freudenstadt, ein Ansprechpartner, Server in Deutschland. Kein anonymer Support." },
             ].map(({ num, icon, title, body }) => (
               <div key={title} className="ava-why__card">
                 <span className="ava-why__num">{num}</span>
@@ -770,29 +717,50 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── PROBLEM STATS ── */}
+      {/* ── PRODUKTE & PREISE ── */}
       <section className="ava-section ava-section--dark" id="services">
+        <span id="pricing" />
         <div className="ava-container">
           <div ref={r2} className="ava-reveal" style={{ textAlign: "center" }}>
-            <p className="ava-eyebrow">Das Problem</p>
+            <p className="ava-eyebrow">Produkte &amp; Preise</p>
             <h2 className="ava-h2">
-              Ihr Hotel verliert Geld<br />
-              <em>jede Stunde ohne AVA.</em>
+              Drei Produkte.<br />
+              <em>Klare Preise.</em>
             </h2>
             <p className="ava-body" style={{ margin: "0 auto 0", maxWidth: "540px" }}>
-              Verpasste Anrufe, langsame Reaktionszeiten und manuelle Prozesse kosten Hotels
-              tausende Euro monatlich. AVA löst das — komplett automatisiert.
+              Sie sehen sofort, was Sie bekommen und was es kostet. Keine versteckten Kosten, monatlich kündbar.
             </p>
           </div>
 
-          <div className="ava-problem__grid">
-            {[
-              { target: 62, prefix: "", suffix: "%", desc: "der Gäste rufen nach Mailbox nicht mehr zurück" },
-              { target: 3,  prefix: "", suffix: " Sek", desc: "genügen, um einen Interessenten zu verlieren" },
-              { target: 15, prefix: "€", suffix: "k",   desc: "monatliche Kosten für manuelle Rezeptionsarbeit" },
-              { target: 0,  prefix: "", suffix: "%",    desc: "der verpassten Anrufe werden nach Feierabend beantwortet" },
-            ].map((item) => (
-              <StatCard key={item.desc} {...item} />
+          <div className="ava-pricing__grid">
+            {PLANS.map(plan => (
+              <div key={plan.tier} className={`ava-pricing__card${plan.popular ? " ava-pricing__card--popular" : ""}`}>
+                {plan.popular && <div className="ava-pricing__badge">⭐ Meistgewählt</div>}
+                <div className="ava-pricing__tier">{plan.tier}</div>
+                <div className="ava-pricing__price">
+                  {plan.price}
+                  {plan.period && <span>{plan.period}</span>}
+                </div>
+                <div className="ava-pricing__sub">{plan.sub}</div>
+                <div className="ava-pricing__divider" />
+                <ul className="ava-pricing__features">
+                  {plan.features.map(f => (
+                    <li key={f} className="ava-pricing__feature">
+                      <span className="ava-pricing__check">✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="ava-pricing__cta">
+                  <a
+                    href={plan.href}
+                    className={`ava-btn ava-btn--lg ${plan.popular ? "ava-btn--primary" : "ava-btn--ghost"}`}
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    {plan.cta}
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -803,22 +771,22 @@ export default function App() {
         <div className="ava-container">
           <div className="ava-solution__split">
             <div ref={r3} className="ava-reveal ava-solution__copy">
-              <p className="ava-eyebrow">Die Lösung</p>
+              <p className="ava-eyebrow">Live erleben</p>
               <h2 className="ava-h2">
                 AVA nimmt jeden Anruf an.<br />
-                <em>Sofort. Perfekt. 24/7.</em>
+                <em>Sofort. Freundlich. 24/7.</em>
               </h2>
               <p className="ava-body">
-                Unser KI-Voice-Agent nimmt Anrufe an, qualifiziert Anfragen,
-                nimmt Buchungen entgegen und beantwortet FAQs — in Echtzeit,
-                in 40+ Sprachen, vollkommen automatisch.
+                Ihr KI-Telefonassistent nimmt Anrufe an, beantwortet Fragen zu Ihrem
+                Betrieb und erfasst Rückrufwünsche und Terminanfragen — in natürlichem
+                Deutsch, vollkommen automatisch.
               </p>
               <p className="ava-body">
-                Keine Warteschleife. Kein verpasster Lead. Kein müdes Personal.
-                Nur nahtlose, intelligente Gespräche, die konvertieren.
+                Keine Warteschleife. Kein Anrufbeantworter, auf den niemand spricht.
+                Probieren Sie es aus — rufen Sie AVA direkt hier im Browser an.
               </p>
-              <a href="#contact" className="ava-btn ava-btn--primary" style={{ marginTop: "0.5rem" }}>
-                AVA für Ihr Hotel →
+              <a href="/ki-telefonassistent-freudenstadt.html" className="ava-btn ava-btn--primary" style={{ marginTop: "0.5rem" }}>
+                Mehr zum Telefonassistenten →
               </a>
             </div>
 
@@ -849,9 +817,9 @@ export default function App() {
               <div className="ava-solution__stats">
                 {[
                   { value: "< 1s", label: "Reaktionszeit", sub: "Sofortige Annahme" },
-                  { value: "24/7", label: "Verfügbarkeit", sub: "Kein Ausfall" },
-                  { value: "40+", label: "Sprachen", sub: "Auto-Erkennung" },
-                  { value: "98%", label: "Zufriedenheit", sub: "Kundenbewertung" },
+                  { value: "24/7", label: "Verfügbarkeit", sub: "Auch nachts & feiertags" },
+                  { value: "DE", label: "Natürliches Deutsch", sub: "Weitere Sprachen möglich" },
+                  { value: "DSGVO", label: "Datenschutz", sub: "EU-Server, AV-Vertrag" },
                 ].map(({ value, label, sub }) => (
                   <div key={label} className="ava-solution__metric">
                     <div className="ava-solution__metric-value">{value}</div>
@@ -861,82 +829,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FEATURES ── */}
-      <section className="ava-section ava-section--dark">
-        <div className="ava-container">
-          <div ref={r5} className="ava-reveal" style={{ textAlign: "center" }}>
-            <p className="ava-eyebrow">Leistungen</p>
-            <h2 className="ava-h2">Alles was Sie brauchen.<br /><em>Nichts was Sie nicht brauchen.</em></h2>
-          </div>
-          <div className="ava-features__grid" style={{ marginTop: "4rem" }}>
-            {[
-              { icon: Icon.mic,      title: "KI Voice Agent",      body: "Gespräche auf menschlichem Niveau — bucht, qualifiziert und konvertiert rund um die Uhr." },
-              { icon: Icon.globe,    title: "Premium Websites",    body: "Hochkonvertierende Websites für moderne Hotels — designed für Vertrauen und Performance." },
-              { icon: Icon.link,     title: "CRM-Integration",     body: "Nahtlose Anbindung an Salesforce, HubSpot, Mews, Opera und 200+ weitere Systeme." },
-              { icon: Icon.zap,      title: "Company OS",          body: "Über 90 Firmenabläufe automatisiert — Rechnungen, Mahnungen, Anfragen, Personal. Ihre Firma läuft von selbst." },
-              { icon: Icon.building, title: "Hotel AI System",     body: "Speziell entwickelt für Hospitality: Concierge-AI, Room Service, Gästebetreuung." },
-              { icon: Icon.shield,   title: "DSGVO & Sicherheit",  body: "Ende-zu-Ende verschlüsselt, EU-Server, vollständig DSGVO-konform. Ihre Daten bleiben Ihre Daten." },
-            ].map(({ icon, title, body }) => (
-              <div key={title} className="ava-feature">
-                <span className="ava-feature__icon">{icon}</span>
-                <h3 className="ava-feature__title">{title}</h3>
-                <p className="ava-feature__body">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRICING ── */}
-      <section className="ava-section" id="pricing">
-        <div className="ava-container">
-          <div ref={r6} className="ava-reveal" style={{ textAlign: "center" }}>
-            <p className="ava-eyebrow">Preise</p>
-            <h2 className="ava-h2">
-              Einfache Preise.<br />
-              <em>Messbarer Return.</em>
-            </h2>
-            <p className="ava-body" style={{ margin: "0 auto 0", maxWidth: "480px" }}>
-              Jedes Paket ist darauf ausgelegt, einen positiven Return on Investment zu generieren.
-            </p>
-          </div>
-
-          <div className="ava-pricing__grid">
-            {PLANS.map(plan => (
-              <div key={plan.tier} className={`ava-pricing__card${plan.popular ? " ava-pricing__card--popular" : ""}`}>
-                {plan.popular && <div className="ava-pricing__badge">⭐ Meistgewählt</div>}
-                <div className="ava-pricing__tier">{plan.tier}</div>
-                <div className="ava-pricing__price">
-                  {plan.price}
-                  {plan.period && <span>{plan.period}</span>}
-                </div>
-                <div className="ava-pricing__sub">{plan.sub}</div>
-                <div className="ava-pricing__divider" />
-                <ul className="ava-pricing__features">
-                  {plan.features.map(f => (
-                    <li key={f} className="ava-pricing__feature">
-                      <span className="ava-pricing__check">✓</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="ava-pricing__cta">
-                  <a
-                    href={plan.tier === "Enterprise" ? "#contact" : "https://calendly.com/dankiazad/30min"}
-                    target={plan.tier === "Enterprise" ? "_self" : "_blank"}
-                    rel="noreferrer"
-                    className={`ava-btn ava-btn--lg ${plan.popular ? "ava-btn--primary" : "ava-btn--ghost"}`}
-                    style={{ width: "100%", justifyContent: "center" }}
-                  >
-                    {plan.cta}
-                  </a>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -963,15 +855,15 @@ export default function App() {
       <section className="ava-section">
         <div className="ava-container">
           <div ref={r9} className="ava-reveal" style={{ textAlign: "center" }}>
-            <p className="ava-eyebrow">Nächste Schritte</p>
-            <h2 className="ava-h2">Von Gespräch zu <em>Go-Live in 3 Wochen.</em></h2>
+            <p className="ava-eyebrow">So läuft es ab</p>
+            <h2 className="ava-h2">Vom ersten Gespräch <em>zum fertigen System.</em></h2>
           </div>
           <div className="ava-steps__grid">
             {[
-              { num: "01", title: "Kostenloses Gespräch", body: "Wir analysieren Ihr Geschäft, Herausforderungen und Ziele." },
-              { num: "02", title: "Business-Analyse", body: "Wir überprüfen Workflows, Gästekommunikation und Potenziale." },
-              { num: "03", title: "Individuelles Angebot", body: "Sie erhalten eine maßgeschneiderte KI-Lösung für Ihr Haus." },
-              { num: "04", title: "Go Live", body: "Implementierung, Onboarding und Launch — alles inklusive." },
+              { num: "01", title: "Kostenloses Erstgespräch", body: "30 Minuten: Wir hören zu und zeigen, was für Ihren Betrieb sinnvoll ist — ehrlich, ohne Verkaufsdruck." },
+              { num: "02", title: "Klares Angebot", body: "Sie bekommen einen festen Preis und wissen genau, was Sie erhalten. Keine Überraschungen." },
+              { num: "03", title: "Wir bauen", body: "Website, Telefonassistent oder Company OS — wir richten alles ein, Sie liefern nur Ihre Infos." },
+              { num: "04", title: "Live & betreut", body: "In wenigen Tagen einsatzbereit. Danach sind wir weiter erreichbar — ein Ansprechpartner, vor Ort." },
             ].map(({ num, title, body }) => (
               <div key={num} className="ava-step">
                 <div className="ava-step__num">{num}</div>
@@ -979,33 +871,6 @@ export default function App() {
                 <p className="ava-step__body">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section className="ava-section ava-section--dark">
-        <div className="ava-container">
-          <div ref={r10} className="ava-reveal" style={{ textAlign: "center" }}>
-            <p className="ava-eyebrow">Kundenstimmen</p>
-            <h2 className="ava-h2">Echte Betriebe.<br /><em>Echtes Wachstum.</em></h2>
-          </div>
-          <div className="ava-carousel" style={{ marginTop: "4rem" }}>
-            <div className="ava-carousel__track">
-              {[...TESTIMONIALS, ...TESTIMONIALS].map(({ quote, name, role, initials }, i) => (
-                <div key={i} className="ava-testimonial">
-                  <div className="ava-testimonial__stars">★★★★★</div>
-                  <p className="ava-testimonial__quote">"{quote}"</p>
-                  <div className="ava-testimonial__author">
-                    <div className="ava-testimonial__avatar">{initials}</div>
-                    <div>
-                      <div className="ava-testimonial__name">{name}</div>
-                      <div className="ava-testimonial__role">{role}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -1032,14 +897,14 @@ export default function App() {
               <p className="ava-eyebrow">Kontakt</p>
               <h2 className="ava-h2">Lassen Sie uns etwas<br /><em>Außergewöhnliches bauen.</em></h2>
               <p className="ava-body">
-                Buchen Sie ein kostenloses 30-Minuten-Strategiegespräch oder schreiben Sie uns.
-                Wir zeigen Ihnen genau, wie AVA Ihr Hotel transformiert.
+                Buchen Sie ein kostenloses 30-Minuten-Erstgespräch oder schreiben Sie uns.
+                Wir zeigen Ihnen genau, was sich in Ihrem Betrieb automatisieren lässt.
               </p>
               <div className="ava-contact__trust">
                 {[
-                  "Kostenloses Strategiegespräch — keine Verpflichtung",
-                  "Live-Demo des AVA Voice Agents",
-                  "Individuelle ROI-Prognose für Ihr Haus",
+                  "Kostenloses Erstgespräch — keine Verpflichtung",
+                  "Live-Demo von Telefonassistent & Company OS",
+                  "Fester Preis vor Projektstart",
                   "Antwort innerhalb von 24 Stunden",
                 ].map(item => (
                   <div key={item} className="ava-contact__trust-item">
@@ -1070,9 +935,9 @@ export default function App() {
         <div className="ava-cta-band__orb" />
         <div className="ava-container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
           <p className="ava-eyebrow" style={{ color: "rgba(255,255,255,0.45)" }}>Bereit für den nächsten Schritt?</p>
-          <h2 className="ava-cta-band__h2">Ihr Hotel verdient<br />das Beste.</h2>
+          <h2 className="ava-cta-band__h2">Ihr Betrieb verdient<br />das Beste.</h2>
           <p className="ava-cta-band__sub">
-            Schließen Sie sich den Hotels an, die AVA bereits nutzen — und nie zurückblicken.
+            Ein Gespräch genügt, um zu sehen, was möglich ist — kostenlos und ohne Verpflichtung.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer"
