@@ -5,3 +5,11 @@ data/uploads/*
 .env
 DEMO-URL.txt
 data/server.log
+
+# Sensible Laufzeitdaten NIE ins (öffentliche) Repo: Zugangsdaten & personenbezogene Daten.
+data/users.json
+data/customers.json
+data/orders.json
+data/movements.json
+data/visits.json
+data/notifications.json

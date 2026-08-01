@@ -137,12 +137,19 @@ function ensureData() {
     save('categories');
   }
 
-  /* Benutzer */
+  /* Benutzer – Admin-Passwort MUSS per Umgebungsvariable gesetzt werden.
+     Ohne ADMIN_PASSWORD wird kein anmeldbarer Admin erzeugt (fail-closed):
+     ein zufälliges, niemandem bekanntes Passwort sperrt den Zugang, bis
+     ADMIN_PASSWORD im Hosting (Render → Environment) hinterlegt ist.
+     So liegen niemals echte Zugangsdaten im (öffentlichen) Code. */
   const users = load('users', []);
   if (!users.length) {
+    const pw = process.env.ADMIN_PASSWORD || crypto.randomBytes(24).toString('hex');
+    if (!process.env.ADMIN_PASSWORD)
+      log('WARN', 'ADMIN_PASSWORD nicht gesetzt – Backoffice ist gesperrt. Bitte im Hosting eine Umgebungsvariable ADMIN_PASSWORD setzen.');
     users.push({
       id: newId('u'), username: process.env.ADMIN_USER || 'malak', name: 'Inhaber',
-      role: 'admin', password: hashPassword(process.env.ADMIN_PASSWORD || 'malak2026'),
+      role: 'admin', password: hashPassword(pw),
       totpSecret: '', totpEnabled: false, createdAt: Date.now()
     });
     save('users');
@@ -268,23 +275,47 @@ function notify(type, text) {
 
 /* ═══════════════════ Middleware ═══════════════════ */
 
+// Hinter dem Render-Reverse-Proxy: echte Client-IP + korrekte HTTPS-Erkennung.
+app.set('trust proxy', 1);
+
+// Sicherheits-Header für alle Antworten (CSP, Clickjacking-Schutz, nosniff).
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Content-Security-Policy',
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'");
+  next();
+});
+
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
   secret: process.env.SESSION_SECRET || crypto.randomBytes(16).toString('hex'),
   resave: false, saveUninitialized: false,
-  cookie: { httpOnly: true, sameSite: 'lax', maxAge: 8 * 3600 * 1000 }
+  // 'auto': Cookie nur über HTTPS ausliefern (greift dank trust proxy auf Render).
+  cookie: { httpOnly: true, sameSite: 'lax', secure: 'auto', maxAge: 8 * 3600 * 1000 }
 }));
-app.use('/uploads', express.static(UPLOAD_DIR, { maxAge: '7d' }));
+// Hochgeladene Dateien niemals im Browser ausführen: als Download ausliefern.
+app.use('/uploads', express.static(UPLOAD_DIR, {
+  maxAge: '7d',
+  setHeaders: (res) => { res.setHeader('Content-Disposition', 'inline'); res.setHeader('X-Content-Type-Options', 'nosniff'); },
+}));
 
+// Dateiendung serverseitig aus dem erlaubten Typ ableiten (nicht aus dem Originalnamen).
+// SVG ist bewusst ausgeschlossen (kann Skripte enthalten → XSS).
+const ERLAUBTE_TYPEN = {
+  'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp',
+  'image/gif': '.gif', 'image/avif': '.avif', 'video/mp4': '.mp4', 'video/webm': '.webm',
+};
 const storage = multer.diskStorage({
   destination: (req, f, cb) => cb(null, UPLOAD_DIR),
-  filename: (req, f, cb) => cb(null, 'img_' + Date.now() + '_' + crypto.randomBytes(4).toString('hex') + (path.extname(f.originalname) || '.jpg').toLowerCase())
+  filename: (req, f, cb) => cb(null, 'img_' + Date.now() + '_' + crypto.randomBytes(4).toString('hex') + (ERLAUBTE_TYPEN[f.mimetype] || '.bin'))
 });
 const upload = multer({
   storage, limits: { fileSize: 8 * 1024 * 1024 },
-  fileFilter: (req, f, cb) => /^image\/(jpe?g|png|webp|gif|avif|svg\+xml)$|^video\/(mp4|webm)$/.test(f.mimetype)
-    ? cb(null, true) : cb(new Error('Nur Bild- oder Videodateien sind erlaubt.'))
+  fileFilter: (req, f, cb) => ERLAUBTE_TYPEN[f.mimetype]
+    ? cb(null, true) : cb(new Error('Nur Bild- oder Videodateien (kein SVG) sind erlaubt.'))
 });
 
 /* Rollen & Rechte */
@@ -382,7 +413,20 @@ app.get('/api/settings', (req, res) => {
 });
 
 /* Besucherzähler (1× pro Sitzung vom Shop aufgerufen) */
-app.post('/api/track', (req, res) => {
+// Einfacher Rate-Limiter (je IP) gegen Missbrauch öffentlicher Schreib-Endpunkte.
+const rlBuckets = new Map();
+function rateLimit(name, max, fensterMs) {
+  return (req, res, next) => {
+    const key = name + ':' + (req.ip || 'x');
+    const jetzt = Date.now();
+    const e = rlBuckets.get(key);
+    if (!e || jetzt - e.seit > fensterMs) { rlBuckets.set(key, { anzahl: 1, seit: jetzt }); return next(); }
+    if (e.anzahl >= max) return res.status(429).json({ error: 'Zu viele Anfragen – bitte kurz warten.' });
+    e.anzahl++; next();
+  };
+}
+
+app.post('/api/track', rateLimit('track', 60, 60_000), (req, res) => {
   const k = dayKey();
   store.visits[k] = (store.visits[k] || 0) + 1;
   save('visits');
@@ -407,7 +451,7 @@ app.get('/api/coupon/:code', (req, res) => {
 });
 
 /* Checkout: legt Bestellung + Kunde an, bucht Lager ab */
-app.post('/api/checkout', (req, res) => {
+app.post('/api/checkout', rateLimit('checkout', 10, 60_000), (req, res) => {
   const b = req.body || {};
   const c = b.customer || {};
   for (const f of ['name', 'email', 'street', 'zip', 'city']) {

@@ -15,10 +15,15 @@
 const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const HERE = __dirname;
 const PORT = process.env.PORT || 4000;
 const children = [];
+// Für die lokale Demo ein zufälliges Admin-Passwort erzeugen (falls nicht gesetzt),
+// statt eines fest verdrahteten. Wird an den Server-Prozess durchgereicht und angezeigt.
+const ADMIN_PW = process.env.ADMIN_PASSWORD || crypto.randomBytes(6).toString('hex');
+const ADMIN_USER = process.env.ADMIN_USER || 'malak';
 
 function line(char = '─') { console.log(char.repeat(64)); }
 
@@ -38,7 +43,7 @@ async function main() {
     console.log(`  ✔ Server läuft bereits auf Port ${PORT}.`);
   } else {
     console.log(`  ▶ Starte Server (Port ${PORT}) …`);
-    const server = spawn(process.execPath, [path.join(HERE, 'server.js')], { cwd: HERE, stdio: ['ignore', 'pipe', 'pipe'] });
+    const server = spawn(process.execPath, [path.join(HERE, 'server.js')], { cwd: HERE, stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, ADMIN_PASSWORD: ADMIN_PW, ADMIN_USER } });
     children.push(server);
     server.stdout.on('data', d => process.stdout.write('    [Server] ' + d));
     server.stderr.on('data', d => process.stdout.write('    [Server] ' + d));
@@ -66,7 +71,7 @@ async function main() {
       `Malak GmbH – Demo-Links (${new Date().toLocaleString('de-DE')})\r\n\r\n` +
       `Shop:        ${url}\r\n` +
       `Backoffice:  ${url}/admin\r\n` +
-      `Login:       malak / malak2026\r\n\r\n` +
+      `Login:       ${ADMIN_USER} / ${ADMIN_PW}\r\n\r\n` +
       `Gültig, solange das Demo-Fenster auf diesem PC offen ist.\r\n`);
     console.log('');
     line('═');
@@ -74,7 +79,7 @@ async function main() {
     console.log('');
     console.log(`  🛒 Shop:        ${url}`);
     console.log(`  🔐 Backoffice:  ${url}/admin`);
-    console.log('     Login:       malak / malak2026');
+    console.log(`     Login:       ${ADMIN_USER} / ${ADMIN_PW}`);
     console.log('');
     console.log('  Die Links stehen auch in DEMO-URL.txt.');
     console.log('  ⚠ Dieses Fenster OFFEN LASSEN – Schließen beendet die Demo.');

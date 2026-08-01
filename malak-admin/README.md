@@ -38,8 +38,10 @@ npm start
 | http://localhost:4000 | Shop (mit Warenkorb, Gutscheinen & Checkout) |
 | http://localhost:4000/admin | Backoffice |
 
-**Standard-Zugang:** Benutzer `malak` · Passwort `malak2026`
-(ändern über `.env`, siehe `.env.example` — vor Live-Gang Pflicht!)
+**Admin-Zugang:** Benutzer `malak` (änderbar über `ADMIN_USER`). Das Passwort wird
+**ausschließlich** über die Umgebungsvariable `ADMIN_PASSWORD` gesetzt (lokal in `.env`,
+im Hosting unter Render → Environment). Ohne gesetztes `ADMIN_PASSWORD` bleibt das
+Backoffice aus Sicherheitsgründen gesperrt. Es liegen keine Zugangsdaten im Code.
 
 ## Funktionsumfang Backoffice
 
