@@ -419,79 +419,6 @@ const PLANS = [
   },
 ];
 
-/* ── Portfolio / Referenzen ──
-   Tipp: `url` auf die jeweilige Live-Demo (z. B. Netlify-URL) setzen. */
-const PROJECTS = [
-  {
-    name: "Oest Gruppe",
-    category: "Industrie & Schmierstoffe",
-    location: "Freudenstadt",
-    desc: "Komplette Neugestaltung mit Download-Center, Live-Suche und eigenem E-Fuels-Bereich.",
-    url: "#",
-    initials: "OE",
-    gradient: "linear-gradient(135deg, #0b3d2e 0%, #0a6b54 100%)",
-    accent: "#1bbf8a",
-  },
-  {
-    name: "Fahrschule Heinzelmann",
-    category: "Fahrschule",
-    location: "Nordschwarzwald",
-    desc: "Moderne, mobil-optimierte Website mit Kursangebot, Online-Anmeldung und klarer Führung.",
-    url: "#",
-    initials: "FH",
-    gradient: "linear-gradient(135deg, #0a2a52 0%, #1769d6 100%)",
-    accent: "#2590ff",
-  },
-  {
-    name: "Nübel-Bau GmbH",
-    category: "Hoch- & Tiefbau",
-    location: "Nordschwarzwald",
-    desc: "Repräsentative Seite für den Meisterbetrieb seit 1970 – Leistungen, Referenzen & Kontakt.",
-    url: "#",
-    initials: "NB",
-    gradient: "linear-gradient(135deg, #0f2238 0%, #1c3a5e 100%)",
-    accent: "#d4520a",
-  },
-];
-
-function Portfolio({ innerRef }) {
-  return (
-    <section className="ava-section" id="referenzen">
-      <div className="ava-container">
-        <div ref={innerRef} className="ava-reveal" style={{ textAlign: "center" }}>
-          <p className="ava-eyebrow">Referenzen</p>
-          <h2 className="ava-h2">Echte Projekte.<br /><em>Echte Betriebe.</em></h2>
-          <p className="ava-body" style={{ margin: "0 auto", maxWidth: "560px" }}>
-            Eine Auswahl maßgeschneiderter Websites von AVA — von der Industrie bis zum Handwerk.
-          </p>
-        </div>
-
-        <div className="ava-portfolio__grid" style={{ marginTop: "4rem" }}>
-          {PROJECTS.map(p => (
-            <a key={p.name} href={p.url} target="_blank" rel="noreferrer" className="ava-portfolio__card">
-              <div className="ava-portfolio__preview" style={{ background: p.gradient }}>
-                <div className="ava-portfolio__chrome"><span /><span /><span /></div>
-                <div className="ava-portfolio__mock">
-                  <span className="ava-portfolio__mono" style={{ color: p.accent }}>{p.initials}</span>
-                  <span className="ava-portfolio__mock-bar" style={{ width: "62%" }} />
-                  <span className="ava-portfolio__mock-bar" style={{ width: "44%", opacity: 0.55 }} />
-                </div>
-              </div>
-              <div className="ava-portfolio__body">
-                <span className="ava-portfolio__tag" style={{ color: p.accent, borderColor: p.accent }}>{p.category}</span>
-                <h3 className="ava-portfolio__name">{p.name}</h3>
-                <p className="ava-portfolio__location">{p.location}</p>
-                <p className="ava-portfolio__desc">{p.desc}</p>
-                <span className="ava-portfolio__link">Live-Demo ansehen <span aria-hidden="true">→</span></span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── Contact Form (Netlify Forms) ── */
 function encodeForm(data) {
   return Object.keys(data)
@@ -615,7 +542,7 @@ export default function App() {
             <li><a href="#why">Warum AVA</a></li>
             <li><a href="#services">Produkte &amp; Preise</a></li>
             <li><a href="#roi">ROI</a></li>
-            <li><a href="#referenzen">Referenzen</a></li>
+            <li><a href="#ueber">Über uns</a></li>
             <li><a href="#contact">Kontakt</a></li>
           </ul>
           <a href="https://calendly.com/dankiazad/30min" target="_blank" rel="noreferrer" className="ava-btn ava-btn--nav">
@@ -627,7 +554,7 @@ export default function App() {
         </div>
         {menuOpen && (
           <div className="ava-nav__mobile">
-            {[["#why","Warum AVA"],["#services","Produkte & Preise"],["#roi","ROI"],["#referenzen","Referenzen"],["#contact","Kontakt"]].map(([href, label]) => (
+            {[["#why","Warum AVA"],["#services","Produkte & Preise"],["#roi","ROI"],["#ueber","Über uns"],["#contact","Kontakt"]].map(([href, label]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
             ))}
           </div>
@@ -667,15 +594,6 @@ export default function App() {
               className="ava-btn ava-btn--ghost ava-btn--lg">
               Kostenloses Erstgespräch
             </MagBtn>
-          </div>
-
-          <div className="ava-vapi__hero-wrap">
-            <VapiCallButton size="lg" />
-            <span className="ava-vapi__hint">Sprich jetzt live mit AVA — direkt im Browser</span>
-          </div>
-
-          <div className="ava-call">
-            <CallDemo />
           </div>
 
           <div className="ava-hero__scroll">
@@ -788,6 +706,12 @@ export default function App() {
               <a href="/ki-telefonassistent-freudenstadt.html" className="ava-btn ava-btn--primary" style={{ marginTop: "0.5rem" }}>
                 Mehr zum Telefonassistenten →
               </a>
+              <div style={{ marginTop: "1.75rem" }}>
+                <VapiCallButton size="md" />
+                <p style={{ fontSize: "0.78rem", color: "var(--gray-2)", marginTop: "0.6rem" }}>
+                  Live-Demo direkt im Browser — sprechen Sie mit AVA.
+                </p>
+              </div>
             </div>
 
             <div ref={r4} className="ava-reveal ava-solution__visual">
@@ -875,8 +799,25 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── PORTFOLIO / REFERENZEN ── */}
-      <Portfolio innerRef={rP} />
+      {/* ── ÜBER AVA ── */}
+      <section className="ava-section" id="ueber">
+        <div className="ava-container" style={{ maxWidth: "760px", textAlign: "center" }}>
+          <div ref={rP} className="ava-reveal">
+            <p className="ava-eyebrow">Über AVA</p>
+            <h2 className="ava-h2">Eine Agentur.<br /><em>Ein Anspruch.</em></h2>
+            <p className="ava-body" style={{ margin: "1.5rem auto 0" }}>
+              AVA ist eine Digitalagentur aus Freudenstadt im Nordschwarzwald.
+              Wir glauben, dass jeder Betrieb Technologie verdient, die sich anfühlt
+              wie von den ganz Großen — klar, schnell und zuverlässig.
+            </p>
+            <p className="ava-body" style={{ margin: "1rem auto 0" }}>
+              Deshalb bauen wir unsere Produkte selbst, hosten auf Servern in Deutschland
+              und bleiben persönlich erreichbar. Kein Callcenter, keine Warteschleife —
+              ein Team aus der Region, das liefert.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ── FAQ ── */}
       <section className="ava-section">
@@ -973,7 +914,7 @@ export default function App() {
                 <span className="ava-footer__col-label">Unternehmen</span>
                 <a href="#why">Warum AVA</a>
                 <a href="#pricing">Preise</a>
-                <a href="#referenzen">Referenzen</a>
+                <a href="#ueber">Über uns</a>
                 <a href="#contact">Kontakt</a>
               </div>
               <div>
