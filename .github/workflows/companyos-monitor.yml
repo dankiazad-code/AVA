@@ -1,4 +1,4 @@
-# Überwacht Company OS auf dem Hetzner-Server (2.28.31.100).
+# Überwacht Company OS auf dem Hetzner-Server (app.ava-hq.com → 2.28.31.100).
 # Prüft alle 15 Minuten den Health-Check; schlägt er fehl, schlägt der
 # Workflow fehl und GitHub schickt automatisch eine Benachrichtigungs-E-Mail.
 # Läuft kostenlos über GitHub Actions – kein zusätzliches Konto nötig.
@@ -17,6 +17,6 @@ jobs:
     steps:
       - name: Health-Check prüfen
         run: |
-          antwort=$(curl -s -m 30 --retry 3 --retry-delay 10 https://2.28.31.100.sslip.io/api/health)
+          antwort=$(curl -s -m 30 --retry 3 --retry-delay 10 https://app.ava-hq.com/api/health)
           echo "Antwort: $antwort"
           echo "$antwort" | grep -q '"status":"ok"'
