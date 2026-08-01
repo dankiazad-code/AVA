@@ -6,10 +6,5 @@ data/uploads/*
 DEMO-URL.txt
 data/server.log
 
-# Sensible Laufzeitdaten NIE ins (öffentliche) Repo: Zugangsdaten & personenbezogene Daten.
+# Zugangsdaten nicht ins Repo – der Demo-Admin (malak/malak2026) wird beim Start neu erzeugt.
 data/users.json
-data/customers.json
-data/orders.json
-data/movements.json
-data/visits.json
-data/notifications.json

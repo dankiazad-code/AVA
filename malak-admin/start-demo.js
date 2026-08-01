@@ -20,9 +20,8 @@ const crypto = require('crypto');
 const HERE = __dirname;
 const PORT = process.env.PORT || 4000;
 const children = [];
-// Für die lokale Demo ein zufälliges Admin-Passwort erzeugen (falls nicht gesetzt),
-// statt eines fest verdrahteten. Wird an den Server-Prozess durchgereicht und angezeigt.
-const ADMIN_PW = process.env.ADMIN_PASSWORD || crypto.randomBytes(6).toString('hex');
+// Demo-Zugang (überschreibbar per Umgebungsvariable).
+const ADMIN_PW = process.env.ADMIN_PASSWORD || 'malak2026';
 const ADMIN_USER = process.env.ADMIN_USER || 'malak';
 
 function line(char = '─') { console.log(char.repeat(64)); }

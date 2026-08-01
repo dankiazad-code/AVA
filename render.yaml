@@ -22,8 +22,5 @@ services:
     envVars:
       - key: SESSION_SECRET
         generateValue: true
-      # Admin-Passwort NICHT hier eintragen (Repo ist öffentlich!).
-      # In Render → Dashboard → Service → Environment manuell setzen.
-      # Ohne diesen Wert bleibt das Backoffice gesperrt (fail-closed).
-      - key: ADMIN_PASSWORD
-        sync: false
+      # Optional: eigenes Admin-Passwort in Render → Environment setzen.
+      # Ohne Angabe nutzt die Demo den Standard-Zugang malak / malak2026.

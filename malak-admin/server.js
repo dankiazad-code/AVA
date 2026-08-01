@@ -137,19 +137,14 @@ function ensureData() {
     save('categories');
   }
 
-  /* Benutzer – Admin-Passwort MUSS per Umgebungsvariable gesetzt werden.
-     Ohne ADMIN_PASSWORD wird kein anmeldbarer Admin erzeugt (fail-closed):
-     ein zufälliges, niemandem bekanntes Passwort sperrt den Zugang, bis
-     ADMIN_PASSWORD im Hosting (Render → Environment) hinterlegt ist.
-     So liegen niemals echte Zugangsdaten im (öffentlichen) Code. */
+  /* Benutzer (Demo): Standard-Zugang malak/malak2026, per ADMIN_USER/ADMIN_PASSWORD
+     überschreibbar. Die users.json wird nicht ins Repo eingecheckt (siehe .gitignore);
+     der Zugang wird bei jedem Start neu erzeugt, damit die Demo überall sofort läuft. */
   const users = load('users', []);
   if (!users.length) {
-    const pw = process.env.ADMIN_PASSWORD || crypto.randomBytes(24).toString('hex');
-    if (!process.env.ADMIN_PASSWORD)
-      log('WARN', 'ADMIN_PASSWORD nicht gesetzt – Backoffice ist gesperrt. Bitte im Hosting eine Umgebungsvariable ADMIN_PASSWORD setzen.');
     users.push({
       id: newId('u'), username: process.env.ADMIN_USER || 'malak', name: 'Inhaber',
-      role: 'admin', password: hashPassword(pw),
+      role: 'admin', password: hashPassword(process.env.ADMIN_PASSWORD || 'malak2026'),
       totpSecret: '', totpEnabled: false, createdAt: Date.now()
     });
     save('users');
